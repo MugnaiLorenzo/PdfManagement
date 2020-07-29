@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Woverloaded-virtual -Wswitch-enum -Wcast-qual -Wwrite-strings -Wredundant-decls -Wreorder -Wno-deprecated-declarations  -rdynamic CMakeFiles/ParserTest.dir/ParserTest.cpp.o  -o ParserTest   -L/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/src  -Wl,-rpath,/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/src -lpodofo 

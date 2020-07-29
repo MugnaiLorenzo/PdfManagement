@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Woverloaded-virtual -Wswitch-enum -Wcast-qual -Wwrite-strings -Wredundant-decls -Wreorder -Wno-deprecated-declarations  -rdynamic CMakeFiles/helloworld-base14.dir/helloworld-base14.cpp.o  -o helloworld-base14   -L/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/src  -Wl,-rpath,/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/src -lpodofo 

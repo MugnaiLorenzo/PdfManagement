@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1277</width>
+    <height>1026</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>0</width>
+    <height>24</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1257</width>
+         <height>985</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="tabsClosable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="Home">
+           <attribute name="title">
+            <string>Home</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QWidget" name="Recenti" native="true">
+              <widget class="QLabel" name="label_5">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>30</y>
+                 <width>441</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Mongolian Baiti</family>
+                 <pointsize>35</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                 <underline>false</underline>
+                 <strikeout>false</strikeout>
+                 <kerning>true</kerning>
+                </font>
+               </property>
+               <property name="text">
+                <string>Recenti</string>
+               </property>
+              </widget>
+              <widget class="QWidget" name="Lista_Nome" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>90</x>
+                 <y>138</y>
+                 <width>551</width>
+                 <height>701</height>
+                </rect>
+               </property>
+               <widget class="QWidget" name="layoutWidget_8">
+                <property name="geometry">
+                 <rect>
+                  <x>1</x>
+                  <y>0</y>
+                  <width>541</width>
+                  <height>701</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="Nome">
+                 <item>
+                  <widget class="QWidget" name="Nome_1" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_2" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_3" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_4" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_5" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_6" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_7" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_8" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Nome_9" native="true"/>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="Lista_Data" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>670</x>
+                 <y>138</y>
+                 <width>311</width>
+                 <height>701</height>
+                </rect>
+               </property>
+               <widget class="QWidget" name="layoutWidget_9">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>311</width>
+                  <height>701</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="Data">
+                 <item>
+                  <widget class="QWidget" name="Data_1" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_2" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_3" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_4" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_5" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_6" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_7" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_8" native="true"/>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Data_9" native="true"/>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+              <widget class="QWidget" name="Lista_Apri" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>1010</x>
+                 <y>138</y>
+                 <width>281</width>
+                 <height>701</height>
+                </rect>
+               </property>
+               <widget class="QWidget" name="layoutWidget_10">
+                <property name="geometry">
+                 <rect>
+                  <x>90</x>
+                  <y>0</y>
+                  <width>111</width>
+                  <height>701</height>
+                 </rect>
+                </property>
+                <layout class="QVBoxLayout" name="Apri">
+                 <item>
+                  <widget class="QWidget" name="Apri_1" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_1">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_2" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_3" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_4" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_5" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_5">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_6" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_7" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_7">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_8" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_8">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="Apri_9" native="true">
+                   <widget class="QPushButton" name="Apri_Butto_9">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>30</y>
+                      <width>75</width>
+                      <height>23</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Apri</string>
+                    </property>
+                   </widget>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+              <widget class="QLabel" name="label_6">
+               <property name="geometry">
+                <rect>
+                 <x>90</x>
+                 <y>100</y>
+                 <width>541</width>
+                 <height>24</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sitka Banner</family>
+                 <pointsize>13</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>NOME</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_8">
+               <property name="geometry">
+                <rect>
+                 <x>1010</x>
+                 <y>100</y>
+                 <width>281</width>
+                 <height>21</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sitka Banner</family>
+                 <pointsize>13</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>APRI</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_7">
+               <property name="geometry">
+                <rect>
+                 <x>680</x>
+                 <y>100</y>
+                 <width>311</width>
+                 <height>24</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Sitka Banner</family>
+                 <pointsize>13</pointsize>
+                 <weight>75</weight>
+                 <italic>true</italic>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>DATA ULTIMA APERTURA</string>
+               </property>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_1">
+          <item>
+           <widget class="QWidget" name="widget_10" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QWidget" name="widget" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_13">
+                <item>
+                 <widget class="QPushButton" name="pushButton">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: trasparent;</string>
+                  </property>
+                  <property name="text">
+                   <string>Pagina</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QSpinBox" name="spinBox"/>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="deletPage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: rgb(183, 104, 87);</string>
+               </property>
+               <property name="text">
+                <string>Cancella Pagina</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_11" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QPushButton" name="movePage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color:rgb(228, 228, 229);</string>
+               </property>
+               <property name="text">
+                <string>Sposta Pagina</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_12" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
+             <item>
+              <widget class="QPushButton" name="rotatePage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: 	rgb(152, 193, 0);</string>
+               </property>
+               <property name="text">
+                <string>Ruota Pagina</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_13" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <item>
+              <widget class="QPushButton" name="unionPage">
+               <property name="minimumSize">
+                <size>
+                 <width>117</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;</string>
+               </property>
+               <property name="text">
+                <string>Unisci Pdf</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_14" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <widget class="QPushButton" name="splitPage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;</string>
+               </property>
+               <property name="text">
+                <string>Dividi Pdf</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_15" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
+             <item>
+              <widget class="QPushButton" name="addPsw">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: 	rgb(255, 233, 123);</string>
+               </property>
+               <property name="text">
+                <string>Aggiungi Password</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_16" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_20">
+             <item>
+              <widget class="QPushButton" name="undo">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color:rgb(74, 179, 231);</string>
+               </property>
+               <property name="text">
+                <string>Torna Indietro</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1277</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNuovo"/>
+    <addaction name="actionApri"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalva"/>
+    <addaction name="separator"/>
+    <addaction name="actionChiudi"/>
+   </widget>
+   <widget class="QMenu" name="menuStrumenti">
+    <property name="title">
+     <string>Strumenti</string>
+    </property>
+    <addaction name="actionCancella_pagina"/>
+    <addaction name="actionSposta_pagina"/>
+    <addaction name="actionRuota_pagina"/>
+    <addaction name="separator"/>
+    <addaction name="actionUnisci"/>
+    <addaction name="actionDividi"/>
+    <addaction name="separator"/>
+    <addaction name="actionAggiungi_password"/>
+    <addaction name="separator"/>
+    <addaction name="actionCancella_l_ultima_azione"/>
+   </widget>
+   <widget class="QMenu" name="menuAiuto">
+    <property name="title">
+     <string>Aiuto</string>
+    </property>
+    <addaction name="actionScarica_Manuale"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuStrumenti"/>
+   <addaction name="menuAiuto"/>
+  </widget>
+  <action name="actionApri">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/Folder-Open-icon.png</normaloff>:/image/Image/Folder-Open-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string> Apri file PDF</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionSalva">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/save.png</normaloff>:/image/Image/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Salva</string>
+   </property>
+  </action>
+  <action name="actionChiudi">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/close.png</normaloff>:/image/Image/close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Chiudi</string>
+   </property>
+  </action>
+  <action name="actionDividi">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/splitPage.png</normaloff>:/image/Image/strumenti/splitPage.png</iconset>
+   </property>
+   <property name="text">
+    <string>Dividi</string>
+   </property>
+  </action>
+  <action name="actionScarica_Manuale">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/manual.png</normaloff>:/image/Image/manual.png</iconset>
+   </property>
+   <property name="text">
+    <string>Apri Manuale</string>
+   </property>
+  </action>
+  <action name="actionUnisci">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/unionPage.png</normaloff>:/image/Image/strumenti/unionPage.png</iconset>
+   </property>
+   <property name="text">
+    <string>Unisci</string>
+   </property>
+  </action>
+  <action name="actionNuovo">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/createFile.png</normaloff>:/image/Image/createFile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Nuovo</string>
+   </property>
+  </action>
+  <action name="actionAggiungi_pagina">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/addPage.png</normaloff>:/image/Image/strumenti/addPage.png</iconset>
+   </property>
+   <property name="text">
+    <string>Aggiungi pagina</string>
+   </property>
+  </action>
+  <action name="actionCancella_pagina">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/deletePage.png</normaloff>:/image/Image/strumenti/deletePage.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cancella pagina</string>
+   </property>
+  </action>
+  <action name="actionSposta_pagina">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/movePage.png</normaloff>:/image/Image/strumenti/movePage.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sposta pagina</string>
+   </property>
+  </action>
+  <action name="actionAggiungi_password">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/addPsw.png</normaloff>:/image/Image/strumenti/addPsw.png</iconset>
+   </property>
+   <property name="text">
+    <string>Aggiungi password</string>
+   </property>
+  </action>
+  <action name="actionRuota_pagina">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/rotatePage.png</normaloff>:/image/Image/strumenti/rotatePage.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ruota pagina</string>
+   </property>
+  </action>
+  <action name="actionCancella_l_ultima_azione">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/image/Image/strumenti/undo.png</normaloff>:/image/Image/strumenti/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cancella l'ultima azione</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

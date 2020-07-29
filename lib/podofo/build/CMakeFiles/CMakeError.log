@@ -1,0 +1,130 @@
+Determining if the include file winsock2.h exists failed with the following output:
+Change Dir: /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_8cdbb/fast && /usr/bin/make -f CMakeFiles/cmTC_8cdbb.dir/build.make CMakeFiles/cmTC_8cdbb.dir/build
+make[1]: ingresso nella directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_8cdbb.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_8cdbb.dir/CheckIncludeFile.c.o   -c /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: winsock2.h: File o directory non esistente
+    1 | #include <winsock2.h>
+      |          ^~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_8cdbb.dir/build.make:66: CMakeFiles/cmTC_8cdbb.dir/CheckIncludeFile.c.o] Error 1
+make[1]: uscita dalla directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+make: *** [Makefile:121: cmTC_8cdbb/fast] Error 2
+
+
+
+Determining if the include file mem.h exists failed with the following output:
+Change Dir: /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_2903e/fast && /usr/bin/make -f CMakeFiles/cmTC_2903e.dir/build.make CMakeFiles/cmTC_2903e.dir/build
+make[1]: ingresso nella directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_2903e.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_2903e.dir/CheckIncludeFile.c.o   -c /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: mem.h: File o directory non esistente
+    1 | #include <mem.h>
+      |          ^~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_2903e.dir/build.make:66: CMakeFiles/cmTC_2903e.dir/CheckIncludeFile.c.o] Error 1
+make[1]: uscita dalla directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+make: *** [Makefile:121: cmTC_2903e/fast] Error 2
+
+
+
+Determining if the include file BaseTsd.h exists failed with the following output:
+Change Dir: /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_978ea/fast && /usr/bin/make -f CMakeFiles/cmTC_978ea.dir/build.make CMakeFiles/cmTC_978ea.dir/build
+make[1]: ingresso nella directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_978ea.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_978ea.dir/CheckIncludeFile.c.o   -c /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: BaseTsd.h: File o directory non esistente
+    1 | #include <BaseTsd.h>
+      |          ^~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_978ea.dir/build.make:66: CMakeFiles/cmTC_978ea.dir/CheckIncludeFile.c.o] Error 1
+make[1]: uscita dalla directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+make: *** [Makefile:121: cmTC_978ea/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test PODOFO_HAVE_OPENSSL_NO_RC4 failed with the following output:
+Change Dir: /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_52e56/fast && /usr/bin/make -f CMakeFiles/cmTC_52e56.dir/build.make CMakeFiles/cmTC_52e56.dir/build
+make[1]: ingresso nella directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_52e56.dir/src.c.o
+/usr/bin/cc   -DPODOFO_HAVE_OPENSSL_NO_RC4   -o CMakeFiles/cmTC_52e56.dir/src.c.o   -c /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/src.c
+/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/src.c:3:5: error: #error No OPENSSL_NO_RC4 defined
+    3 |    #error No OPENSSL_NO_RC4 defined
+      |     ^~~~~
+make[1]: *** [CMakeFiles/cmTC_52e56.dir/build.make:66: CMakeFiles/cmTC_52e56.dir/src.c.o] Error 1
+make[1]: uscita dalla directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+make: *** [Makefile:121: cmTC_52e56/fast] Error 2
+
+
+Source file was:
+#include <openssl/opensslconf.h>
+			#ifndef OPENSSL_NO_RC4
+			#error No OPENSSL_NO_RC4 defined
+			#endif
+			int main(void) { return 0; }
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_06da3/fast && /usr/bin/make -f CMakeFiles/cmTC_06da3.dir/build.make CMakeFiles/cmTC_06da3.dir/build
+make[1]: ingresso nella directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_06da3.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_06da3.dir/src.c.o   -c /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_06da3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_06da3.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_06da3.dir/src.c.o  -o cmTC_06da3 
+/usr/bin/ld: CMakeFiles/cmTC_06da3.dir/src.c.o: in function `main':
+src.c:(.text+0x46): undefined reference to `pthread_create'
+/usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
+/usr/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_06da3.dir/build.make:87: cmTC_06da3] Error 1
+make[1]: uscita dalla directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+make: *** [Makefile:121: cmTC_06da3/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_59db5/fast && /usr/bin/make -f CMakeFiles/cmTC_59db5.dir/build.make CMakeFiles/cmTC_59db5.dir/build
+make[1]: ingresso nella directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+Building C object CMakeFiles/cmTC_59db5.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_59db5.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_59db5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59db5.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_59db5.dir/CheckFunctionExists.c.o  -o cmTC_59db5  -lpthreads 
+/usr/bin/ld: impossibile trovare -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_59db5.dir/build.make:87: cmTC_59db5] Error 1
+make[1]: uscita dalla directory "/home/lorenzo/CLionProjects/PdfManagement/lib/podofo/build/CMakeFiles/CMakeTmp"
+make: *** [Makefile:121: cmTC_59db5/fast] Error 2
+
+
+

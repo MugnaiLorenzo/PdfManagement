@@ -45,6 +45,235 @@
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_1">
+          <item>
+           <widget class="QWidget" name="widget_10" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <widget class="QPushButton" name="zoomp">
+                 <property name="minimumSize">
+                  <size>
+                   <width>113</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: white; 
+text-align: center;
+text-decoration: none;
+font-size: 12px;
+border-width: 2px;</string>
+                 </property>
+                 <property name="text">
+                  <string>Zoom</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="zoomm">
+                 <property name="minimumSize">
+                  <size>
+                   <width>113</width>
+                   <height>23</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: white; 
+text-align: center;
+text-decoration: none;
+font-size: 12px;
+border-width: 2px;</string>
+                 </property>
+                 <property name="text">
+                  <string>Zoom</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: trasparent;</string>
+               </property>
+               <property name="text">
+                <string>Pagina</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QPushButton" name="deletPage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: rgb(183, 104, 87);</string>
+               </property>
+               <property name="text">
+                <string>Cancella Pagina</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_11" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QPushButton" name="movePage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color:rgb(228, 228, 229);</string>
+               </property>
+               <property name="text">
+                <string>Sposta Pagina</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_12" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
+             <item>
+              <widget class="QPushButton" name="rotatePage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: 	rgb(152, 193, 0);</string>
+               </property>
+               <property name="text">
+                <string>Ruota Pagina</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_13" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <item>
+              <widget class="QPushButton" name="unionPage">
+               <property name="minimumSize">
+                <size>
+                 <width>117</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;</string>
+               </property>
+               <property name="text">
+                <string>Unisci Pdf</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_14" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <widget class="QPushButton" name="splitPage">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;</string>
+               </property>
+               <property name="text">
+                <string>Dividi Pdf</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_15" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
+             <item>
+              <widget class="QPushButton" name="undo">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color:rgb(74, 179, 231);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="redo">
+               <property name="styleSheet">
+                <string notr="true">background-color: white; 
+color: black; 
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+ border-style: outset;
+border-width: 2px;
+ border-color: 	rgb(255, 233, 123);</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
         <item row="1" column="0">
          <widget class="QTabWidget" name="tabWidget">
           <property name="acceptDrops">
@@ -436,197 +665,6 @@
           </widget>
          </widget>
         </item>
-        <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_1">
-          <item>
-           <widget class="QWidget" name="widget_10" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_14">
-             <item>
-              <widget class="QWidget" name="widget" native="true">
-               <layout class="QHBoxLayout" name="horizontalLayout_13">
-                <item>
-                 <widget class="QPushButton" name="pushButton">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;
- border-style: outset;
-border-width: 2px;
- border-color: trasparent;</string>
-                  </property>
-                  <property name="text">
-                   <string>Pagina</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinBox"/>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="deletPage">
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;
- border-style: outset;
-border-width: 2px;
- border-color: rgb(183, 104, 87);</string>
-               </property>
-               <property name="text">
-                <string>Cancella Pagina</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_11" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_15">
-             <item>
-              <widget class="QPushButton" name="movePage">
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;
- border-style: outset;
-border-width: 2px;
- border-color:rgb(228, 228, 229);</string>
-               </property>
-               <property name="text">
-                <string>Sposta Pagina</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_12" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_16">
-             <item>
-              <widget class="QPushButton" name="rotatePage">
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;
- border-style: outset;
-border-width: 2px;
- border-color: 	rgb(152, 193, 0);</string>
-               </property>
-               <property name="text">
-                <string>Ruota Pagina</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_13" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_17">
-             <item>
-              <widget class="QPushButton" name="unionPage">
-               <property name="minimumSize">
-                <size>
-                 <width>117</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;</string>
-               </property>
-               <property name="text">
-                <string>Unisci Pdf</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_14" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_18">
-             <item>
-              <widget class="QPushButton" name="splitPage">
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;</string>
-               </property>
-               <property name="text">
-                <string>Dividi Pdf</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_15" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_19">
-             <item>
-              <widget class="QPushButton" name="addPsw">
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;
- border-style: outset;
-border-width: 2px;
- border-color: 	rgb(255, 233, 123);</string>
-               </property>
-               <property name="text">
-                <string>Aggiungi Password</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_16" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_20">
-             <item>
-              <widget class="QPushButton" name="undo">
-               <property name="styleSheet">
-                <string notr="true">background-color: white; 
-color: black; 
-text-align: center;
-text-decoration: none;
-font-size: 16px;
- border-style: outset;
-border-width: 2px;
- border-color:rgb(74, 179, 231);</string>
-               </property>
-               <property name="text">
-                <string>Torna Indietro</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -646,7 +684,6 @@ border-width: 2px;
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNuovo"/>
     <addaction name="actionApri"/>
     <addaction name="separator"/>
     <addaction name="actionSalva"/>
@@ -664,9 +701,9 @@ border-width: 2px;
     <addaction name="actionUnisci"/>
     <addaction name="actionDividi"/>
     <addaction name="separator"/>
-    <addaction name="actionAggiungi_password"/>
-    <addaction name="separator"/>
+    <addaction name="actionRifai"/>
     <addaction name="actionCancella_l_ultima_azione"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuAiuto">
     <property name="title">
@@ -680,8 +717,8 @@ border-width: 2px;
   </widget>
   <action name="actionApri">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/Folder-Open-icon.png</normaloff>:/image/Image/Folder-Open-icon.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/Folder-Open-icon.png</normaloff>:/Image/Folder-Open-icon.png</iconset>
    </property>
    <property name="text">
     <string> Apri file PDF</string>
@@ -692,8 +729,8 @@ border-width: 2px;
   </action>
   <action name="actionSalva">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/save.png</normaloff>:/image/Image/save.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/save.png</normaloff>:/Image/save.png</iconset>
    </property>
    <property name="text">
     <string>Salva</string>
@@ -701,8 +738,8 @@ border-width: 2px;
   </action>
   <action name="actionChiudi">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/close.png</normaloff>:/image/Image/close.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/close.png</normaloff>:/Image/close.png</iconset>
    </property>
    <property name="text">
     <string>Chiudi</string>
@@ -710,17 +747,17 @@ border-width: 2px;
   </action>
   <action name="actionDividi">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/splitPage.png</normaloff>:/image/Image/strumenti/splitPage.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/splitPage.png</normaloff>:/Image/strumenti/splitPage.png</iconset>
    </property>
    <property name="text">
-    <string>Dividi</string>
+    <string>Dividi Pdf</string>
    </property>
   </action>
   <action name="actionScarica_Manuale">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/manual.png</normaloff>:/image/Image/manual.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/manual.png</normaloff>:/Image/manual.png</iconset>
    </property>
    <property name="text">
     <string>Apri Manuale</string>
@@ -728,35 +765,17 @@ border-width: 2px;
   </action>
   <action name="actionUnisci">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/unionPage.png</normaloff>:/image/Image/strumenti/unionPage.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/unionPage.png</normaloff>:/Image/strumenti/unionPage.png</iconset>
    </property>
    <property name="text">
-    <string>Unisci</string>
-   </property>
-  </action>
-  <action name="actionNuovo">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/createFile.png</normaloff>:/image/Image/createFile.png</iconset>
-   </property>
-   <property name="text">
-    <string>Nuovo</string>
-   </property>
-  </action>
-  <action name="actionAggiungi_pagina">
-   <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/addPage.png</normaloff>:/image/Image/strumenti/addPage.png</iconset>
-   </property>
-   <property name="text">
-    <string>Aggiungi pagina</string>
+    <string>Unisci Pdf</string>
    </property>
   </action>
   <action name="actionCancella_pagina">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/deletePage.png</normaloff>:/image/Image/strumenti/deletePage.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/deletePage.png</normaloff>:/Image/strumenti/deletePage.png</iconset>
    </property>
    <property name="text">
     <string>Cancella pagina</string>
@@ -764,26 +783,26 @@ border-width: 2px;
   </action>
   <action name="actionSposta_pagina">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/movePage.png</normaloff>:/image/Image/strumenti/movePage.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/movePage.png</normaloff>:/Image/strumenti/movePage.png</iconset>
    </property>
    <property name="text">
     <string>Sposta pagina</string>
    </property>
   </action>
-  <action name="actionAggiungi_password">
+  <action name="actionRifai">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/addPsw.png</normaloff>:/image/Image/strumenti/addPsw.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/redoo.png</normaloff>:/Image/strumenti/redoo.png</iconset>
    </property>
    <property name="text">
-    <string>Aggiungi password</string>
+    <string>Rifai l'ultima azione</string>
    </property>
   </action>
   <action name="actionRuota_pagina">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/rotatePage.png</normaloff>:/image/Image/strumenti/rotatePage.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/rotatePage.png</normaloff>:/Image/strumenti/rotatePage.png</iconset>
    </property>
    <property name="text">
     <string>Ruota pagina</string>
@@ -791,14 +810,16 @@ border-width: 2px;
   </action>
   <action name="actionCancella_l_ultima_azione">
    <property name="icon">
-    <iconset>
-     <normaloff>:/image/Image/strumenti/undo.png</normaloff>:/image/Image/strumenti/undo.png</iconset>
+    <iconset resource="Risorse.qrc">
+     <normaloff>:/Image/strumenti/undo.png</normaloff>:/Image/strumenti/undo.png</iconset>
    </property>
    <property name="text">
     <string>Cancella l'ultima azione</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Risorse.qrc"/>
+ </resources>
  <connections/>
 </ui>

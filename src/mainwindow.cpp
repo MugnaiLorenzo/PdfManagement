@@ -1,26 +1,33 @@
 #include "mainwindow.h"
 #include "QRect"
 #include "QPixmap"
+#include "UnionPdf.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), actualView(), manage(new ManagementView())
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->scrollAreaWidgetContents->showMaximized();
-    ui->unionPage->setIcon(QIcon(":/image/Image/strumenti/unionPage.png"));
+    ui->unionPage->setIcon(QIcon(":/Image/strumenti/unionPage.png"));
     ui->unionPage->setIconSize(QSize(30, 30));
-    ui->deletPage->setIcon(QIcon(":/image/Image/strumenti/deletePage.png"));
+    ui->deletPage->setIcon(QIcon(":Image/strumenti/deletePage.png"));
     ui->deletPage->setIconSize(QSize(30, 30));
-    ui->movePage->setIcon(QIcon(":/image/Image/strumenti/movePage.png"));
+    ui->movePage->setIcon(QIcon(":/Image/strumenti/movePage.png"));
     ui->movePage->setIconSize(QSize(30, 30));
-    ui->rotatePage->setIcon(QIcon(":/image/Image/strumenti/rotatePage.png"));
+    ui->rotatePage->setIcon(QIcon(":/Image/strumenti/rotatePage.png"));
     ui->rotatePage->setIconSize(QSize(30, 30));
-    ui->splitPage->setIcon(QIcon(":/image/Image/strumenti/splitPage.png"));
+    ui->splitPage->setIcon(QIcon(":/Image/strumenti/splitPage.png"));
     ui->splitPage->setIconSize(QSize(30, 30));
-    ui->addPsw->setIcon(QIcon(":/image/Image/strumenti/addPsw.png"));
-    ui->addPsw->setIconSize(QSize(30, 30));
-    ui->undo->setIcon(QIcon(":/image/Image/strumenti/undo.png"));
+    ui->redo->setIcon(QIcon(":/Image/strumenti/redo.png"));
+    ui->redo->setIconSize(QSize(30, 30));
+    ui->undo->setIcon(QIcon(":/Image/strumenti/undo.png"));
     ui->undo->setIconSize(QSize(30, 30));
+    ui->spinBox->setMaximum(5000000);
+    ui->zoomp->setIcon(QIcon(":Image/strumenti/zoom_in"));
+    ui->zoomp->setIconSize(QSize(20, 20));
+    ui->zoomm->setIcon(QIcon(":Image/strumenti/zoom_out"));
+    ui->zoomm->setIconSize(QSize(20, 20));
     recentFile();
     QObject::connect(ui->spinBox,SIGNAL(valueChanged(int)),this,SLOT(on_spinBox_textChanged(int)));
     QObject::connect(ui->tabWidget,SIGNAL(currentChanged(int)),this, SLOT(onTabChange()));
@@ -33,7 +40,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::recentFile(){
     QString path = QDir::currentPath();
-    QFile file("../../src/Text.txt");
+    QFile file("./Text.txt");
     file.open(QIODevice::ReadOnly| QIODevice::Text);
     QStringList wordList;
     int i=0,j=0;
@@ -96,7 +103,7 @@ void MainWindow::recentFile(){
 }
 void MainWindow::saveFile(QString nameFile){
     QString path = QDir::currentPath();
-    QFile file1("../../src/Text.txt");
+    QFile file1("./Text.txt");
     if(file1.open(QFile::WriteOnly| QFile::Text))
     {
         QDate *date= new QDate();
@@ -117,7 +124,7 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
     ui->tabWidget->removeTab(index);
 }
 //MENU
-bool MainWindow::on_actionApri_triggered()
+void MainWindow::on_actionApri_triggered()
 {
     QFile fileToOpen(QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("Text files (*.pdf)")));
     QFileInfo fileInfo(fileToOpen.fileName());
@@ -128,30 +135,37 @@ bool MainWindow::on_actionApri_triggered()
 }
 
 void MainWindow::apriRecente(QString fileName){
-    QFile fileToOpen(fileName);
-    QFileInfo fileInfo(fileToOpen.fileName());
-    QString s(fileInfo.fileName());
-    QString Qname= fileInfo.path()+"/"+s;
-    std::string name= Qname.toStdString();
-    QTabWidget *t=new QTabWidget;
-    QWidget* newTab = new QWidget(t);
-    newTab->setObjectName(QString::number(nView));
-    nView++;
-    std::string id = newTab->objectName().toStdString();
-    const char * Cname = name.c_str();
-    View *view= new View(id, Cname, Qname);
-    manage->addView(view);
-    QImage image= view->start();
-    actualView= view;
-    QGraphicsScene *scene= new QGraphicsScene();
-    QGraphicsView *graphicsView= new QGraphicsView();
-    scene->addPixmap(QPixmap::fromImage(image));
-    graphicsView->setScene(scene);
-    QVBoxLayout* layout = new QVBoxLayout();
-    layout->addWidget(graphicsView);
-    newTab->setLayout( layout );
-    ui->tabWidget->addTab(newTab,s);
-    fileToOpen.close();
+    if(QFileInfo::exists(fileName)){
+        QFile fileToOpen(fileName);
+        QFileInfo fileInfo(fileToOpen.fileName());
+        QString s(fileInfo.fileName());
+        QString Qname= fileInfo.path()+"/"+s;
+        std::string name= Qname.toStdString();
+        QTabWidget *t=new QTabWidget;
+        QWidget* newTab = new QWidget(t);
+        newTab->setObjectName(QString::number(nView));
+        nView++;
+        std::string id = newTab->objectName().toStdString();
+        const char * Cname = name.c_str();
+        View *view= new View(id, Cname, Qname);
+        manage->addView(view);
+        QImage image= view->start();
+        actualView= view;
+        QGraphicsScene *scene= new QGraphicsScene();
+        QGraphicsView *graphicsView= new QGraphicsView();
+        scene->addPixmap(QPixmap::fromImage(image));
+        graphicsView->setScene(scene);
+        QVBoxLayout* layout = new QVBoxLayout();
+        layout->addWidget(graphicsView);
+        newTab->setLayout( layout );
+        ui->tabWidget->addTab(newTab,s);
+        fileToOpen.close();
+    }
+    else{
+        QMessageBox mess;
+        mess.setText("Errore nel caricamento");
+        mess.exec();
+    }
 }
 
 void MainWindow::on_actionSalva_triggered()
@@ -161,10 +175,6 @@ void MainWindow::on_actionSalva_triggered()
 void MainWindow::on_actionChiudi_triggered()
 {
     QApplication::quit();
-    //TODO write function
-}
-void MainWindow::on_actionNuovo_triggered()
-{
     //TODO write function
 }
 
@@ -186,11 +196,6 @@ void MainWindow::on_actionCancella_pagina_triggered()
 void MainWindow::on_actionSposta_pagina_triggered()
 {
     MainWindow::on_movePage_clicked();
-}
-
-void MainWindow::on_actionAggiungi_password_triggered()
-{
-    MainWindow::on_addPsw_clicked();
 }
 
 void MainWindow::on_actionRuota_pagina_triggered()
@@ -222,7 +227,7 @@ void MainWindow::on_deletPage_clicked()
     QMenu *menu = new QMenu();
     QHBoxLayout *layout = new QHBoxLayout();
     QSpinBox *spin= new QSpinBox();
-
+    spin->setMaximum(5000000);
     layout->addWidget(label);
     layout->addWidget(spin);
     layout->addWidget(button);
@@ -254,6 +259,8 @@ void MainWindow::on_movePage_clicked()
     QHBoxLayout *layout = new QHBoxLayout();
     QSpinBox *spin= new QSpinBox();
     QSpinBox *spin1= new QSpinBox();
+    spin->setMaximum(5000000);
+    spin1->setMaximum(5000000);
 
     layout->addWidget(label);
     layout->addWidget(spin);
@@ -264,7 +271,7 @@ void MainWindow::on_movePage_clicked()
 
     QObject::connect(spin,SIGNAL(valueChanged(int)),this,SLOT(onSpinMove1Change(int)));
     QObject::connect(spin1,SIGNAL(valueChanged(int)),this,SLOT(onSpinMove2Change(int)));
-    QObject::connect(button,SIGNAL(clicked()),this,SLOT(MovePage()));
+    QObject::connect(button,SIGNAL(clicked()),this,SLOT(movePage()));
     QWidgetAction *action =new QWidgetAction(this);
     action->setDefaultWidget(wid);
     menu->addAction(action);
@@ -291,6 +298,8 @@ void MainWindow::on_splitPage_clicked()
     QHBoxLayout *layout = new QHBoxLayout();
     QSpinBox *spin= new QSpinBox();
     QSpinBox *spin1= new QSpinBox();
+    spin->setMaximum(5000000);
+    spin1->setMaximum(5000000);
 
     layout->addWidget(label);
     layout->addWidget(spin);
@@ -308,38 +317,6 @@ void MainWindow::on_splitPage_clicked()
     ui->splitPage->setMenu(menu);
     ui->splitPage->showMenu();
     //TODO write function
-}
-
-void MainWindow::on_addPsw_clicked()
-{
-    std::string str = "Scrivi Password: ";
-    QString qstr = QString::fromStdString(str);
-    std::string str1 = "Vai";
-    QString qstr1 = QString::fromStdString(str1);
-    QLabel *label= new QLabel(qstr);
-    QPushButton *button= new QPushButton();
-    button->setText(qstr1);
-
-    QWidget *wid = new QWidget();
-    QMenu *menu = new QMenu();
-    QHBoxLayout *layout = new QHBoxLayout();
-    QTextEdit *text= new QTextEdit();
-    QSize size = text->document()->size().toSize();
-    text->setFixedHeight( size.height()  );
-
-    layout->addWidget(label);
-    layout->addWidget(text);
-    layout->addWidget(button);
-    wid->setLayout(layout);
-
-    QObject::connect(text,SIGNAL(textChanged()),this,SLOT(onPswChange()));
-    QObject::connect(button,SIGNAL(clicked()),this,SLOT(addPsw()));
-    QWidgetAction *action =new QWidgetAction(this);
-    action->setDefaultWidget(wid);
-    menu->addAction(action);
-    ui->addPsw->setMenu(menu);
-    ui->addPsw->showMenu();
-
 }
 
 void MainWindow::on_Apri_Butto_1_clicked()
@@ -421,9 +398,11 @@ void MainWindow::on_spinBox_textChanged(int i) {
 void MainWindow::onTabChange() {
     if(ui->tabWidget->currentWidget()->objectName()!="Home")
     {
-        int n= ui->tabWidget->currentWidget()->objectName().toInt();
-        actualView = manage->getView(std::to_string(n));
+        actualView = manage->getView(ui->tabWidget->currentWidget()->objectName().toStdString());
         ui->spinBox->setValue(actualView->getPdf()->getActual_page());
+    }
+    else{
+        actualView= nullptr;
     }
 }
 
@@ -446,67 +425,146 @@ void MainWindow::onSpinSplit2Change(int i) {
 }
 void MainWindow::delPage() {
     if(actualView!= nullptr){
-        if(spinDelete < actualView->getPdf()->getNumberOfPage()){
-            actualView->getPdf()->delPage(spinDelete,1);
-            actualView->start();
+        if(spinDelete < actualView->getPdf()->getNumberOfPage() && actualView->getPdf()->getNumberOfPage()!=1){
+            DeletePage *del=new DeletePage(actualView->getPdf(), spinDelete, spinDelete);
+            del->update();
+            QImage image = actualView->start();
+            QGraphicsScene *scene= new QGraphicsScene();
+            QGraphicsView *graphicsView= new QGraphicsView();
+            scene->addPixmap(QPixmap::fromImage(image));
+            graphicsView->setScene(scene);
+            QVBoxLayout* layout = new QVBoxLayout();
+            layout->addWidget(graphicsView);
+            delete ui->tabWidget->currentWidget()->layout();
+            ui->tabWidget->currentWidget()->setLayout(layout);
+            actualView->getPdf()->setActual_page(i);
+            QMessageBox mess;
+            mess.setText("Pagina eliminata");
+            mess.exec();
+        }
+        if(actualView->getPdf()->getNumberOfPage()==1)
+        {
+            QMessageBox mess;
+            mess.setText("Non puoi cancellare la pagina perchè il pdf contiene solamente una pagina");
+            mess.exec();
         }
     }
 }
 
 void MainWindow::SplitPage() {
-    QMessageBox mess;
-    if(spinSplit1>spinSplit2)
-    {
-        mess.setText("Hai sbagliato ad inserire i dati");
-        mess.exec();
-    } else{
-        actualView->getPdf()->delPage(spinSplit1,spinSplit2);
-        mess.setText(QString::number(spinSplit1)+QString::number(spinSplit2));
-        mess.exec();
+    if(actualView != nullptr) {
+        QMessageBox mess;
+        if (spinSplit1 > spinSplit2) {
+            mess.setText("Hai sbagliato ad inserire i dati");
+            mess.exec();
+        } else {
+            DeletePage *del = new DeletePage(actualView->getPdf(), spinSplit1, spinSplit2);
+            del->update();
+            QImage image = actualView->start();
+            QGraphicsScene *scene = new QGraphicsScene();
+            QGraphicsView *graphicsView = new QGraphicsView();
+            scene->addPixmap(QPixmap::fromImage(image));
+            graphicsView->setScene(scene);
+            QVBoxLayout *layout = new QVBoxLayout();
+            layout->addWidget(graphicsView);
+            delete ui->tabWidget->currentWidget()->layout();
+            ui->tabWidget->currentWidget()->setLayout(layout);
+            actualView->getPdf()->setActual_page(i);
+            mess.setText("Pagina eliminata");
+            mess.exec();
+        }
     }
 }
 
-void MainWindow::MovePage() {
-    QMessageBox mess;
-    if(spinMove1==spinMove2)
-    {
-
-    } else{
-        mess.setText(QString::number(spinMove1)+QString::number(spinMove2));
-        mess.exec();
+void MainWindow::movePage() {
+    if(actualView != nullptr) {
+        QMessageBox mess;
+        if (spinMove1 == spinMove2) {
+            mess.setText("Hai sbagliato ad inserire i dati");
+            mess.exec();
+        } else {
+            MovePage *move = new MovePage(actualView->getPdf(), spinMove1, spinMove2);
+            move->update();
+            QImage image = actualView->start();
+            QGraphicsScene *scene = new QGraphicsScene();
+            QGraphicsView *graphicsView = new QGraphicsView();
+            scene->addPixmap(QPixmap::fromImage(image));
+            graphicsView->setScene(scene);
+            QVBoxLayout *layout = new QVBoxLayout();
+            layout->addWidget(graphicsView);
+            delete ui->tabWidget->currentWidget()->layout();
+            ui->tabWidget->currentWidget()->setLayout(layout);
+            actualView->getPdf()->setActual_page(i);
+            mess.setText("Pagina Spostata");
+            mess.exec();
+        }
     }
-}
-
-void MainWindow::addPsw() {
-
 }
 
 void MainWindow::on_undo_clicked()
 {
     //TODO write function
 }
-
 void MainWindow::on_rotatePage_clicked()
 {
     if(actualView != nullptr)
     {
         QMessageBox mess;
-        mess.setText(QString::number(actualView->getPdf()->getPdf()->GetPage(actualView->getPdf()->getActual_page())->GetPageNumber()));
-        mess.exec();
         EditRotation *e= new EditRotation(actualView->getPdf());
-        e->update();
-        actualView->start();
+        QImage image = e->updateImage();
+        QGraphicsScene *scene= new QGraphicsScene();
+        QGraphicsView *graphicsView= new QGraphicsView();
+        scene->addPixmap(QPixmap::fromImage(image));
+        graphicsView->setScene(scene);
+        QVBoxLayout* layout = new QVBoxLayout();
+        layout->addWidget(graphicsView);
+        delete ui->tabWidget->currentWidget()->layout();
+        ui->tabWidget->currentWidget()->setLayout(layout);
+        actualView->getPdf()->setActual_page(i);
+        mess.setText("Pagina Girata");
+        mess.exec();
     }
 }
 
 void MainWindow::on_unionPage_clicked()
 {
-    QFile file(QFileDialog::getOpenFileName(this, tr("Open File")));
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QFileInfo fileInfo(file.fileName());
-    file.close();
+    if(actualView != nullptr) {
+        QFile file(QFileDialog::getOpenFileName(this, tr("Open File")));
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        QFileInfo fileInfo(file.fileName());
+        QString Qname= fileInfo.path()+"/"+fileInfo.fileName();
+        std::string name= Qname.toStdString();
+        const char * Cname = name.c_str();
+        Pdf *pdfToAdd = new Pdf(Cname,Qname);
+        UnionPdf *unionPdf= new UnionPdf(actualView->getPdf(),pdfToAdd);
+        unionPdf->update();
+        file.close();
+    }
+
 }
 
-void MainWindow::onPswChange() {
+void MainWindow::on_zoomp_clicked() {
+    QImage image = actualView->update(actualView->getPdf()->getActual_page(),"piu");
+    QGraphicsScene *scene= new QGraphicsScene();
+    QGraphicsView *graphicsView= new QGraphicsView();
+    scene->addPixmap(QPixmap::fromImage(image));
+    graphicsView->setScene(scene);
+    QVBoxLayout* layout = new QVBoxLayout();
+    layout->addWidget(graphicsView);
+    delete ui->tabWidget->currentWidget()->layout();
+    ui->tabWidget->currentWidget()->setLayout(layout);
+    actualView->getPdf()->setActual_page(i);
+}
 
+void MainWindow::on_zoomm_clicked() {
+    QImage image = actualView->update(actualView->getPdf()->getActual_page(),"meno");
+    QGraphicsScene *scene= new QGraphicsScene();
+    QGraphicsView *graphicsView= new QGraphicsView();
+    scene->addPixmap(QPixmap::fromImage(image));
+    graphicsView->setScene(scene);
+    QVBoxLayout* layout = new QVBoxLayout();
+    layout->addWidget(graphicsView);
+    delete ui->tabWidget->currentWidget()->layout();
+    ui->tabWidget->currentWidget()->setLayout(layout);
+    actualView->getPdf()->setActual_page(i);
 }

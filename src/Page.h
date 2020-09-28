@@ -11,9 +11,12 @@ public:
     Poppler::Page * getPage();
     void setPage(Poppler::Page  *pdfPage);
     const Page returnPage();
+    int app();
+    int getRotate() ;
+    void setRotate(int rotate);
 private:
     Poppler::Page *page;
-
+    int rotate=0;
 };
 
 

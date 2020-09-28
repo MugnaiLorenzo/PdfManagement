@@ -12,32 +12,31 @@
 #include "QString"
 #include <stack>
 #include <memory>
-
+#include <list>
 
 class Pdf {
 public:
     Pdf(const char* file_name,QString Qfile_name);
     ~Pdf();
-    std::list<Page> getPage();
-    void setPage(std::list<Page> pages);
+    std::list<std::shared_ptr<Page>> getPage();
+    void setPage(std::list<std::shared_ptr<Page>> pages);
     Poppler::Page* getPage(int n);
     PoDoFo::PdfMemDocument* getPdf();
     Poppler::Document* getPdfDoc();
     void setPage(int nPage, Poppler::Page *page);
-    void delPage(int nPage, int nPages);
-    void movePage(int nPage, int atPage);
+    bool delPage(int nPage, int nPages);
+    bool movePage(int nPage, int atPage);
     void addPage(int nPage, PoDoFo::PdfPage *page);
-    std::list<Page>::iterator advance(int n);
+    void unionPdf(Pdf *pdfToAdd);
+    std::list<std::shared_ptr<Page>>::iterator advance(int n);
     void setActual_page(int  n);
     int getActual_page();
     int getNumberOfPage();
 private:
     PoDoFo::PdfMemDocument *pdf;
     Poppler::Document *doc;
-    std::list<Page> app;
-    std::list<Page> pages;
-    std::list<Page>::iterator it;
-    std::stack<Page> pages1;
+    std::list<std::shared_ptr<Page>>pages;
+    std::list<std::shared_ptr<Page>>::iterator it;
     int actual_Page;
 };
 

@@ -24,6 +24,7 @@
 #include "QGraphicsView"
 #include "EditRotation.h"
 #include "DeletePage.h"
+#include "MovePage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,7 +46,7 @@ public:
     View* getView(std::string id);
 private slots:
 
-    bool on_actionApri_triggered();
+    void on_actionApri_triggered();
 
     void on_actionChiudi_triggered();
 
@@ -61,8 +62,6 @@ private slots:
 
     void on_splitPage_clicked();
 
-    void on_addPsw_clicked();
-
     void on_undo_clicked();
 
     void on_actionSalva_triggered();
@@ -72,13 +71,9 @@ private slots:
 
     void on_actionUnisci_triggered();
 
-    void on_actionNuovo_triggered();
-
     void on_actionCancella_pagina_triggered();
 
     void on_actionSposta_pagina_triggered();
-
-    void on_actionAggiungi_password_triggered();
 
     void on_actionRuota_pagina_triggered();
 
@@ -112,13 +107,15 @@ private slots:
 
     void on_spinBox_textChanged(int i);
 
+    void on_zoomp_clicked();
+
+    void on_zoomm_clicked();
+
     void delPage();
 
     void SplitPage();
 
-    void MovePage();
-
-    void addPsw();
+    void movePage();
 
     void onSpinDelChange(int i);
 
@@ -131,8 +128,6 @@ private slots:
     void onSpinMove2Change(int i);
 
     void onTabChange();
-
-    void onPswChange();
 
 private:
     Ui::MainWindow *ui;

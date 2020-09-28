@@ -6,16 +6,13 @@ Command::~Command(){
     delete pdf;
     undo_pages.clear();
 }
-void Command::execute(){
-}
 void Command::undo(){
     pdf->setPage(undo_pages);
 }
-
-void Command::update() {
-
+void Command::execute(){
 }
-
+bool Command::update() {
+}
 
 
 

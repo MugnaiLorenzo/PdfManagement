@@ -9,11 +9,11 @@ public:
     explicit Command(Pdf *pdf);
     virtual ~Command();
     virtual void execute();
-    virtual void update();
+    virtual bool update();
     virtual void undo();
 protected:
     Pdf *pdf;
-    std::list<Page> undo_pages;
+    std::list<std::shared_ptr<Page>> undo_pages;
 };
 
 

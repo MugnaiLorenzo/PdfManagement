@@ -4,9 +4,10 @@
 #include "podofo/doc/PdfMemDocument.h"
 
 class UnionPdf: public Command{
+public:
     UnionPdf(Pdf *pdf, Pdf  *pdfToAdd);
     ~UnionPdf() override;
-    void update() override;
+    bool update() override;
     void execute() override;
 
 private:

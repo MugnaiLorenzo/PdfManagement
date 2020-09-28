@@ -6,6 +6,7 @@ class EditRotation: public Command{
 public:
     EditRotation(Pdf *pdf);
     ~EditRotation() override;
+    QImage updateImage();
     void undo() override ;
     void execute() override;
 

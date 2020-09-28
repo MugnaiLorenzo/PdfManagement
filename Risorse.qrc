@@ -1,6 +1,7 @@
 <RCC>
-    <qresource prefix="/image">
+    <qresource prefix="/">
         <file>Image/close.png</file>
+        <file>Image/createFile.png</file>
         <file>Image/Folder-Open-icon.png</file>
         <file>Image/manual.png</file>
         <file>Image/save.png</file>
@@ -8,12 +9,12 @@
         <file>Image/strumenti/addPsw.png</file>
         <file>Image/strumenti/deletePage.png</file>
         <file>Image/strumenti/movePage.png</file>
+        <file>Image/strumenti/redo.png</file>
+        <file>Image/strumenti/rotatePage.png</file>
         <file>Image/strumenti/splitPage.png</file>
         <file>Image/strumenti/undo.png</file>
         <file>Image/strumenti/unionPage.png</file>
-        <file>Image/createFile.png</file>
-        <file>Image/strumenti/rotatePage.png</file>
+        <file>Image/strumenti/zoom_in.png</file>
+        <file>Image/strumenti/zoom_out.png</file>
     </qresource>
-    <qresource prefix="/File"/>
-    <qresource prefix="/file"/>
 </RCC>

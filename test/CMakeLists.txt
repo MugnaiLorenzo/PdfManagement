@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 add_subdirectory(lib/googletest)
 set(GTEST_SOURCE_DIR, ./lib/googletest)
-include_directories(${GTEST_SOURCE_DIR}/include ${GTEST_SOURCE_DIR})
+include_directories(../src ${GTEST_SOURCE_DIR}/include ${GTEST_SOURCE_DIR})
 
-set(SOURCE
-        RunAllTest.cpp
-        ViewTest.cpp)
+set(SOURCE RunAllTest.cpp ViewTest.cpp
+        DeletePageTest.cpp MovePageTest.cpp)
 set(PoDoFo_DIR ../lib/podofo/build)
 find_package(PoDoFo REQUIRED)
 find_package(Qt5Widgets REQUIRED)

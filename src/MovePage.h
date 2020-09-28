@@ -6,9 +6,9 @@ class MovePage: public Command {
 public:
     MovePage(Pdf *pdf, int nPage, int atPage);
     ~MovePage() override;
-    void update() override;
+    bool update() override;
     void execute() override;
-
+    Pdf* getPdf();
 private:
     int nPage, atPage;
 };

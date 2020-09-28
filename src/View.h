@@ -14,10 +14,13 @@ public:
     QImage  start();
     QImage update(int n);
     View * getView();
+    QImage update(int n, std::string zoom);
 private:
     Pdf* pdf;
     std:: string id;
     QImage image;
+    int height=1250;
+    int width=900;
 };
 
 

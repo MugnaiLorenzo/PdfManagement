@@ -4,7 +4,7 @@ set(GTEST_SOURCE_DIR, ./lib/googletest)
 include_directories(../src ${GTEST_SOURCE_DIR}/include ${GTEST_SOURCE_DIR})
 
 set(SOURCE RunAllTest.cpp ViewTest.cpp
-        DeletePageTest.cpp MovePageTest.cpp)
+        DeletePageTest.cpp MovePageTest.cpp UnionTest.cpp)
 set(PoDoFo_DIR ../lib/podofo/build)
 find_package(PoDoFo REQUIRED)
 find_package(Qt5Widgets REQUIRED)

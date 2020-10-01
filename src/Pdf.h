@@ -27,7 +27,7 @@ public:
     bool delPage(int nPage, int nPages);
     bool movePage(int nPage, int atPage);
     void addPage(int nPage, PoDoFo::PdfPage *page);
-    void unionPdf(Pdf *pdfToAdd);
+    bool unionPdf(Pdf *pdfToAdd);
     std::list<std::shared_ptr<Page>>::iterator advance(int n);
     void setActual_page(int  n);
     int getActual_page();

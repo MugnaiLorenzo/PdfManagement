@@ -117,8 +117,9 @@ bool Pdf::movePage(int nPage, int atPage) {
         return false;
 }
 
-void Pdf::unionPdf(Pdf *pdfToAdd) {
+bool Pdf::unionPdf(Pdf *pdfToAdd) {
     for(int i=0;i<pdfToAdd->getPage().size();i++){
         pages.emplace_back(std::shared_ptr<Page>(new Page(pdfToAdd->advance(i)->get()->getPage())));
     }
+    return true;
 }

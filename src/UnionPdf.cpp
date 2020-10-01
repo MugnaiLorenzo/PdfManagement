@@ -8,9 +8,17 @@ UnionPdf::~UnionPdf() {
 }
 
 bool UnionPdf::update() {
-   pdf->unionPdf(pdfToAdd);
+    return pdf->unionPdf(pdfToAdd);
 }
 
 void UnionPdf::execute() {
     pdf->getPdf()->InsertPages(pdfToAdd->getPdf(),0,pdfToAdd->getPage().size());
+}
+
+Pdf * UnionPdf::getPdf() {
+    return pdf;
+}
+
+Pdf * UnionPdf::getPdfToAdd() {
+    return pdfToAdd;
 }

@@ -9,7 +9,8 @@ public:
     ~UnionPdf() override;
     bool update() override;
     void execute() override;
-
+    Pdf * getPdf();
+    Pdf * getPdfToAdd();
 private:
     Pdf *pdfToAdd;
 };

@@ -15,43 +15,16 @@ protected:
         del=new DeletePage(pdf,pdf->getNumberOfPage(),pdf->getNumberOfPage()); //cancellare pagine non esistenti
         del1=new DeletePage(pdf,0,3); //cancellare pagine non esistenti
     }
-    void testDeleteNotExistPage(Pdf *pdf);
-    void testDeleteNPage(Pdf *pdf);
 };
 
-void DeletePageTest::testDeleteNotExistPage(Pdf *pdf) {
-    if(pdf != nullptr){
-        if(del->update())
-            GTEST_FAIL();
-        else
-            GTEST_SUCCEED();
-    }
-    else
-        GTEST_FAIL();
-}
-
-void DeletePageTest::testDeleteNPage(Pdf *pdf) {
-    if(pdf != nullptr){
-        int nPage=pdf->getNumberOfPage();
-        if(del1->update()){
-            if((nPage-4)==pdf->getNumberOfPage()){
-                GTEST_SUCCEED();
-            }
-            else{
-                GTEST_FAIL();
-            }
-        }
-        else
-            GTEST_FAIL();
-    }
-    else
-        GTEST_FAIL();
-}
-
 TEST_F(DeletePageTest, TestNotExistPage) {
-    testDeleteNotExistPage(del->getPdf());
+    ASSERT_NE(nullptr,del->getPdf());
+    ASSERT_FALSE(del->update());
 }
 
 TEST_F(DeletePageTest, TestNPage) {
-    testDeleteNPage(del1->getPdf());
+    int nPage=del1->getPdf()->getNumberOfPage();
+    ASSERT_NE(nullptr,del1->getPdf());
+    ASSERT_TRUE(del1->update());
+    ASSERT_EQ(nPage-4,del1->getPdf()->getNumberOfPage());
 }

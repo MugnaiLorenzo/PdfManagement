@@ -15,57 +15,23 @@ protected:
         move1= new MovePage(pdf,1,2);
         move2= new MovePage(pdf,2,1);
     }
-    void testMovePageNotExist(Pdf *pdf);
-    void testMovePageAhead(Pdf *pdf);
-    void testMovePageBehind(Pdf *pdf);
 };
 
-void MovePageTest::testMovePageNotExist(Pdf *pdf) {
-    int nPage=pdf->getNumberOfPage();
-    if(pdf!= nullptr){
-        if(move->update()){
-            GTEST_FAIL();
-        }
-        else{
-            if(nPage==pdf->getNumberOfPage()){
-                GTEST_SUCCEED();
-            }
-            else
-                GTEST_FAIL();
-        }
-    }
-    else
-        GTEST_FAIL();
-}
-
-void MovePageTest::testMovePageAhead(Pdf *pdf) {
-    int nPage=pdf->getNumberOfPage();
-    if(pdf!= nullptr) {
-        if(move1->update())
-            if(nPage==pdf->getNumberOfPage())
-                GTEST_SUCCEED();
-        else
-            GTEST_FAIL();
-    }
-}
-
-void MovePageTest::testMovePageBehind(Pdf *pdf) {
-    int nPage=pdf->getNumberOfPage();
-    if(pdf!= nullptr) {
-        if(move2->update())
-            if(nPage==pdf->getNumberOfPage())
-                GTEST_SUCCEED();
-            else
-                GTEST_FAIL();
-    }
-}
-
 TEST_F(MovePageTest, TestMovePageNotExist) {
-    testMovePageNotExist(move->getPdf());
+    int nPage=move->getPdf()->getNumberOfPage();
+    ASSERT_NE(nullptr,move->getPdf());
+    ASSERT_FALSE(move->update());
+    ASSERT_EQ(nPage,move->getPdf()->getNumberOfPage());
 }
 TEST_F(MovePageTest, TestMovePageAhead) {
-    testMovePageAhead(move1->getPdf());
+    int nPage=move1->getPdf()->getNumberOfPage();
+    ASSERT_NE(nullptr,move1->getPdf());
+    ASSERT_TRUE(move1->update());
+    ASSERT_EQ(nPage,move1->getPdf()->getNumberOfPage());
 }
 TEST_F(MovePageTest, TestMovePageBehind) {
-    testMovePageBehind(move2->getPdf());
+    int nPage=move2->getPdf()->getNumberOfPage();
+    ASSERT_NE(nullptr,move2->getPdf());
+    ASSERT_TRUE(move2->update());
+    ASSERT_EQ(nPage,move2->getPdf()->getNumberOfPage());
 }

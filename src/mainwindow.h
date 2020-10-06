@@ -25,19 +25,18 @@
 #include "EditRotation.h"
 #include "DeletePage.h"
 #include "MovePage.h"
+#include "Observer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow,Observer
 {
     Q_OBJECT
-
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void Push();
 
     int i=0;
     QByteArray line[9];
@@ -65,7 +64,6 @@ private slots:
     void on_undo_clicked();
 
     void on_actionSalva_triggered();
-
 
     void on_actionScarica_Manuale_triggered();
 
@@ -128,6 +126,8 @@ private slots:
     void onSpinMove2Change(int i);
 
     void onTabChange();
+
+    void update() override;
 
 private:
     Ui::MainWindow *ui;

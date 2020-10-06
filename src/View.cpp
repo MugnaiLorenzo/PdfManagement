@@ -43,36 +43,6 @@ Pdf *View::getPdf() {
 QImage View::update(int n) {
     if(pdf->advance(n)->get()->getRotate()==0)
     {
-        return pdf->advance(n)->get()->getPage()->renderToImage(110,110,-1,-1,-1,-1,Poppler::Page::Rotate0);
-    }
-    else if(pdf->advance(n)->get()->getRotate()==90)
-    {
-        return pdf->advance(n)->get()->getPage()->renderToImage(110,110,-1,-1,-1,-1,Poppler::Page::Rotate90);
-    }
-    else if(pdf->advance(n)->get()->getRotate()==180)
-    {
-        return pdf->advance(n)->get()->getPage()->renderToImage(110,110,-1,-1,-1,-1,Poppler::Page::Rotate180);
-    }
-    else{
-        return pdf->advance(n)->get()->getPage()->renderToImage(110,110,-1,-1,-1,-1,Poppler::Page::Rotate270);
-    }
-}
-
-View * View::getView() {
-    return this;
-}
-
-QImage View::update(int n, std::string zoom) {
-    if(zoom=="piu"){
-        height+=100;
-        width+=100;
-    }
-    else{
-        height-=100;
-        width-=100;
-    }
-    if(pdf->advance(n)->get()->getRotate()==0)
-    {
         return pdf->advance(n)->get()->getPage()->renderToImage(110,110,-1,-1,-1,-1,Poppler::Page::Rotate0).scaled(width,height);
     }
     else if(pdf->advance(n)->get()->getRotate()==90)
@@ -86,6 +56,27 @@ QImage View::update(int n, std::string zoom) {
     else{
         return pdf->advance(n)->get()->getPage()->renderToImage(110,110,-1,-1,-1,-1,Poppler::Page::Rotate270).scaled(width,height);
     }
+}
+
+View * View::getView() {
+    return this;
+}
+
+void View::zoom(std::string zoom) {
+    if(zoom=="piu"){
+        height+=100;
+        width+=100;
+    }
+    else{
+        height-=100;
+        width-=100;
+    }
+    pdf->notify();
+}
+
+void View::resetZoom() {
+    height=1250;
+    width=900;
 }
 
 

@@ -13,8 +13,9 @@
 #include <stack>
 #include <memory>
 #include <list>
+#include "Subject.h"
 
-class Pdf {
+class Pdf : public Subject{
 public:
     Pdf(const char* file_name,QString Qfile_name);
     ~Pdf();
@@ -32,12 +33,15 @@ public:
     void setActual_page(int  n);
     int getActual_page();
     int getNumberOfPage();
+    void notify() override;
+    void addObserver(Observer *observer) override;
 private:
     PoDoFo::PdfMemDocument *pdf;
     Poppler::Document *doc;
     std::list<std::shared_ptr<Page>>pages;
     std::list<std::shared_ptr<Page>>::iterator it;
     int actual_Page;
+    Observer *observer;
 };
 
 

@@ -80,8 +80,6 @@ void MainWindow::recentFile(){
     {
         apri[k]->setVisible(false);
     }
-
-
     if(!file.isOpen()){
         std::cout<<"Impossibile aprire file Recenti";
     }
@@ -151,6 +149,7 @@ void MainWindow::apriRecente(QString fileName){
         manage->addView(view);
         QImage image= view->start();
         actualView= view;
+        actualView->getPdf()->addObserver(this);
         QGraphicsScene *scene= new QGraphicsScene();
         QGraphicsView *graphicsView= new QGraphicsView();
         scene->addPixmap(QPixmap::fromImage(image));
@@ -369,10 +368,9 @@ View* MainWindow::getView(std::string id){
 
 void MainWindow::on_spinBox_textChanged(int i) {
     try {
-        /*int n= ui->tabWidget->currentWidget()->objectName().toInt();
-        actualView = manage->getView(std::to_string(n));*/
         if(actualView != nullptr){
             if(i<actualView->getPdf()->getNumberOfPage()){
+                actualView->resetZoom();
                 QImage image = actualView->update(i);
                 QGraphicsScene *scene= new QGraphicsScene();
                 QGraphicsView *graphicsView= new QGraphicsView();
@@ -428,24 +426,16 @@ void MainWindow::delPage() {
         if(spinDelete < actualView->getPdf()->getNumberOfPage() && actualView->getPdf()->getNumberOfPage()!=1){
             DeletePage *del=new DeletePage(actualView->getPdf(), spinDelete, spinDelete);
             del->update();
-            QImage image = actualView->start();
-            QGraphicsScene *scene= new QGraphicsScene();
-            QGraphicsView *graphicsView= new QGraphicsView();
-            scene->addPixmap(QPixmap::fromImage(image));
-            graphicsView->setScene(scene);
-            QVBoxLayout* layout = new QVBoxLayout();
-            layout->addWidget(graphicsView);
-            delete ui->tabWidget->currentWidget()->layout();
-            ui->tabWidget->currentWidget()->setLayout(layout);
-            actualView->getPdf()->setActual_page(i);
-            QMessageBox mess;
-            mess.setText("Pagina eliminata");
-            mess.exec();
         }
-        if(actualView->getPdf()->getNumberOfPage()==1)
+        else if(actualView->getPdf()->getNumberOfPage()==1)
         {
             QMessageBox mess;
             mess.setText("Non puoi cancellare la pagina perchè il pdf contiene solamente una pagina");
+            mess.exec();
+        }
+        else{
+            QMessageBox mess;
+            mess.setText("Hai sbagliato ad inserire i dati");
             mess.exec();
         }
     }
@@ -460,18 +450,6 @@ void MainWindow::SplitPage() {
         } else {
             DeletePage *del = new DeletePage(actualView->getPdf(), spinSplit1, spinSplit2);
             del->update();
-            QImage image = actualView->start();
-            QGraphicsScene *scene = new QGraphicsScene();
-            QGraphicsView *graphicsView = new QGraphicsView();
-            scene->addPixmap(QPixmap::fromImage(image));
-            graphicsView->setScene(scene);
-            QVBoxLayout *layout = new QVBoxLayout();
-            layout->addWidget(graphicsView);
-            delete ui->tabWidget->currentWidget()->layout();
-            ui->tabWidget->currentWidget()->setLayout(layout);
-            actualView->getPdf()->setActual_page(i);
-            mess.setText("Pagina eliminata");
-            mess.exec();
         }
     }
 }
@@ -485,18 +463,6 @@ void MainWindow::movePage() {
         } else {
             MovePage *move = new MovePage(actualView->getPdf(), spinMove1, spinMove2);
             move->update();
-            QImage image = actualView->start();
-            QGraphicsScene *scene = new QGraphicsScene();
-            QGraphicsView *graphicsView = new QGraphicsView();
-            scene->addPixmap(QPixmap::fromImage(image));
-            graphicsView->setScene(scene);
-            QVBoxLayout *layout = new QVBoxLayout();
-            layout->addWidget(graphicsView);
-            delete ui->tabWidget->currentWidget()->layout();
-            ui->tabWidget->currentWidget()->setLayout(layout);
-            actualView->getPdf()->setActual_page(i);
-            mess.setText("Pagina Spostata");
-            mess.exec();
         }
     }
 }
@@ -509,27 +475,15 @@ void MainWindow::on_rotatePage_clicked()
 {
     if(actualView != nullptr)
     {
-        QMessageBox mess;
         EditRotation *e= new EditRotation(actualView->getPdf());
-        QImage image = e->updateImage();
-        QGraphicsScene *scene= new QGraphicsScene();
-        QGraphicsView *graphicsView= new QGraphicsView();
-        scene->addPixmap(QPixmap::fromImage(image));
-        graphicsView->setScene(scene);
-        QVBoxLayout* layout = new QVBoxLayout();
-        layout->addWidget(graphicsView);
-        delete ui->tabWidget->currentWidget()->layout();
-        ui->tabWidget->currentWidget()->setLayout(layout);
-        actualView->getPdf()->setActual_page(i);
-        mess.setText("Pagina Girata");
-        mess.exec();
+        e->update();
     }
 }
 
 void MainWindow::on_unionPage_clicked()
 {
     if(actualView != nullptr) {
-        QFile file(QFileDialog::getOpenFileName(this, tr("Open File")));
+        QFile file(QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("Text files (*.pdf)")));
         file.open(QIODevice::ReadOnly | QIODevice::Text);
         QFileInfo fileInfo(file.fileName());
         QString Qname= fileInfo.path()+"/"+fileInfo.fileName();
@@ -544,20 +498,22 @@ void MainWindow::on_unionPage_clicked()
 }
 
 void MainWindow::on_zoomp_clicked() {
-    QImage image = actualView->update(actualView->getPdf()->getActual_page(),"piu");
-    QGraphicsScene *scene= new QGraphicsScene();
-    QGraphicsView *graphicsView= new QGraphicsView();
-    scene->addPixmap(QPixmap::fromImage(image));
-    graphicsView->setScene(scene);
-    QVBoxLayout* layout = new QVBoxLayout();
-    layout->addWidget(graphicsView);
-    delete ui->tabWidget->currentWidget()->layout();
-    ui->tabWidget->currentWidget()->setLayout(layout);
-    actualView->getPdf()->setActual_page(i);
+    actualView->zoom("piu");
 }
 
 void MainWindow::on_zoomm_clicked() {
-    QImage image = actualView->update(actualView->getPdf()->getActual_page(),"meno");
+    actualView->zoom("meno");
+}
+
+void MainWindow::setView(View *view) {
+    actualView= view;
+}
+
+void MainWindow::update() {
+    int page= actualView->getPdf()->getActual_page();
+    if(page >= actualView->getPdf()->getNumberOfPage())
+        page = actualView->getPdf()->getNumberOfPage()-1;
+    QImage image= actualView->update(page);
     QGraphicsScene *scene= new QGraphicsScene();
     QGraphicsView *graphicsView= new QGraphicsView();
     scene->addPixmap(QPixmap::fromImage(image));
@@ -566,5 +522,6 @@ void MainWindow::on_zoomm_clicked() {
     layout->addWidget(graphicsView);
     delete ui->tabWidget->currentWidget()->layout();
     ui->tabWidget->currentWidget()->setLayout(layout);
-    actualView->getPdf()->setActual_page(i);
+    actualView->getPdf()->setActual_page(page);
+    ui->spinBox->setValue(page);
 }

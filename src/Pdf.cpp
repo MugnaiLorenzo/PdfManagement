@@ -76,8 +76,11 @@ int Pdf::getNumberOfPage() {
 bool Pdf::delPage(int nPage, int nPages) {
     try {
         if(nPage==nPages){
-            if(nPage!=getNumberOfPage())
+            if(nPage!=getNumberOfPage()){
                 pages.erase(advance(nPage));
+                notify();
+                return true;
+            }
             else
                 return false;
         }
@@ -86,6 +89,7 @@ bool Pdf::delPage(int nPage, int nPages) {
                 for(nPage;nPage<=nPages;nPage++){
                     pages.erase(advance(nPage));
                 }
+                notify();
                 return true;
             } else
                 return false;
@@ -96,20 +100,21 @@ bool Pdf::delPage(int nPage, int nPages) {
         mess.exec();
         return false;
     }
-    return true;
 }
 bool Pdf::movePage(int nPage, int atPage) {
     if(nPage<getNumberOfPage() && atPage<getNumberOfPage()){
         if(nPage<atPage){
-            std::shared_ptr<Page> page1(new Page(advance(nPage)->get()->getPage()));
+            std::shared_ptr<Page> page1(advance(nPage)->get());
             pages.insert(advance(atPage+1),page1);
             pages.erase(advance(nPage));
+            notify();
             return true;
         }
         else{
-            std::shared_ptr<Page> page1(new Page(advance(nPage)->get()->getPage()));
+            std::shared_ptr<Page> page1(advance(nPage)->get());
             pages.insert(advance(atPage),page1);
             pages.erase(advance(nPage+1));
+            notify();
             return true;
         }
     }
@@ -121,5 +126,14 @@ bool Pdf::unionPdf(Pdf *pdfToAdd) {
     for(int i=0;i<pdfToAdd->getPage().size();i++){
         pages.emplace_back(std::shared_ptr<Page>(new Page(pdfToAdd->advance(i)->get()->getPage())));
     }
+    notify();
     return true;
+}
+
+void Pdf::notify() {
+    observer->update();
+}
+
+void Pdf::addObserver(Observer *observer) {
+    Pdf::observer=observer;
 }

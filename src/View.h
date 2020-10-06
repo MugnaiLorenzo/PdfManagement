@@ -14,7 +14,8 @@ public:
     QImage  start();
     QImage update(int n);
     View * getView();
-    QImage update(int n, std::string zoom);
+    void zoom(std:: string zoom);
+    void resetZoom();
 private:
     Pdf* pdf;
     std:: string id;

@@ -22,7 +22,7 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS} ${Qt5Core_INCLUDE_DIRS} ${CMAKE_C
 set(CMAKE_AUTOMOC ON)
 qt5_wrap_ui(UIC_SOURCES ${FORMS})
 qt5_add_resources(RCC_SOURCES ${RESOURCES})
-add_executable(PdfManagement ${SOURCES} ${HEADERS} ${UIC_SOURCES} ${RCC_SOURCES})
+add_executable(PdfManagement ${SOURCES} ${HEADERS} ${UIC_SOURCES} ${RCC_SOURCES} Observer.h Subject.h)
 add_library(core ${SOURCES} ${LIBRARIES})
 target_link_libraries(PdfManagement  ${LIBRARIES})
 install(TARGETS PdfManagement RUNTIME DESTINATION bin)

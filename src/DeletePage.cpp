@@ -4,20 +4,14 @@
 DeletePage::DeletePage(Pdf *pdf,int nPage, int nPages = 1) : Command(pdf),nPage(nPage),nPages(nPages) {
 }
 DeletePage::~DeletePage(){
-    delete pdf;
 }
 bool DeletePage::update() {
-    pdf->delPage(nPage,nPages);
+    return pdf->delPage(nPage,nPages);
 }
 void DeletePage::execute(){
     if(pdf->getPdf()->IsLoaded()){
-        pdf->getPdf()->DeletePages(nPage,nPages);
         QMessageBox mess;
-        mess.setText(QString::number(nPage) + QString::number(nPages));
+        mess.setText("Delete");
         mess.exec();
     }
-}
-
-Pdf * DeletePage::getPdf() {
-    return pdf;
 }

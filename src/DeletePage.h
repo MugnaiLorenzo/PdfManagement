@@ -8,7 +8,6 @@ public:
     ~DeletePage() override;
     bool update() override;
     void execute() override;
-    Pdf* getPdf();
 private:
     int nPage;
     int nPages;

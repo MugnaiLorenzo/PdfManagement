@@ -63,6 +63,8 @@ private slots:
 
     void on_undo_clicked();
 
+    void on_redo_clicked();
+
     void on_actionSalva_triggered();
 
     void on_actionScarica_Manuale_triggered();

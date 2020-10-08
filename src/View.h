@@ -4,6 +4,11 @@
 #include "Pdf.h"
 #include "Command.h"
 #include <QtGui/QImage>
+#include "QMessageBox"
+#include <utility>
+#include <QtCore/QFileInfo>
+#include "CommandPattern.h"
+
 class View {
 public:
     View();
@@ -11,6 +16,7 @@ public:
     ~View();
     std::string getId();
     Pdf* getPdf();
+    CommandPattern* getCommandPattern();
     QImage  start();
     QImage update(int n);
     View * getView();
@@ -20,6 +26,7 @@ private:
     Pdf* pdf;
     std:: string id;
     QImage image;
+    CommandPattern *commandPattern;
     int height=1250;
     int width=900;
 };

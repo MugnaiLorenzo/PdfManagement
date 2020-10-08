@@ -1,6 +1,5 @@
-#include <qt5/QtCore/QString>
-#include "qt5/QtWidgets/QMessageBox"
 #include "Pdf.h"
+
 Pdf::Pdf(const char* file_name, QString Qfile_name):actual_Page(0) {
     pdf= new PoDoFo::PdfMemDocument();
     try {
@@ -19,9 +18,6 @@ Pdf::Pdf(const char* file_name, QString Qfile_name):actual_Page(0) {
 }
 
 Pdf::~Pdf() {
-    delete pdf;
-    delete doc;
-   // pages.clear();
 }
 std::list<std::shared_ptr<Page>> Pdf::getPage(){
     return pages;
@@ -131,9 +127,14 @@ bool Pdf::unionPdf(Pdf *pdfToAdd) {
 }
 
 void Pdf::notify() {
-    observer->update();
+    if(observer != nullptr)
+        observer->update();
 }
 
 void Pdf::addObserver(Observer *observer) {
     Pdf::observer=observer;
+}
+
+void Pdf::removeObserver() {
+    Pdf::observer= nullptr;
 }

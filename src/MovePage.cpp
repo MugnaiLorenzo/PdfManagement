@@ -4,7 +4,6 @@
 MovePage::MovePage(Pdf *pdf, int nPage, int atPage) : Command(pdf), atPage(atPage), nPage(nPage){
 }
 MovePage::~MovePage() {
-    delete pdf;
 }
 
 bool MovePage::update() {
@@ -16,8 +15,9 @@ void MovePage::execute() {
     pdf->getPdf()->DeletePages(nPage,1);
     pdf->getPage().insert(pdf->advance(atPage),app);
     delete app;*/
-}
-
-Pdf *MovePage::getPdf() {
-    return pdf;
+    if(pdf->getPdf()->IsLoaded()){
+        QMessageBox mess;
+        mess.setText("Move");
+        mess.exec();
+    }
 }

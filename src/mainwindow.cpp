@@ -33,9 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->tabWidget,SIGNAL(currentChanged(int)),this, SLOT(onTabChange()));
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
+MainWindow::~MainWindow(){
 }
 
 void MainWindow::recentFile(){
@@ -148,8 +146,7 @@ void MainWindow::apriRecente(QString fileName){
         View *view= new View(id, Cname, Qname);
         manage->addView(view);
         QImage image= view->start();
-        actualView= view;
-        actualView->getPdf()->addObserver(this);
+        view->getPdf()->addObserver(this);
         QGraphicsScene *scene= new QGraphicsScene();
         QGraphicsView *graphicsView= new QGraphicsView();
         scene->addPixmap(QPixmap::fromImage(image));
@@ -169,12 +166,13 @@ void MainWindow::apriRecente(QString fileName){
 
 void MainWindow::on_actionSalva_triggered()
 {
-    //TODO write function
+    if(actualView!= nullptr){
+        actualView->getCommandPattern()->excecute();
+    }
 }
 void MainWindow::on_actionChiudi_triggered()
 {
     QApplication::quit();
-    //TODO write function
 }
 
 void MainWindow::on_actionScarica_Manuale_triggered()
@@ -363,7 +361,7 @@ void MainWindow::on_Apri_Butto_9_clicked()
     apriRecente(labelName[8]);
 }
 View* MainWindow::getView(std::string id){
-    manage->getView(id);
+    return manage->getView(id);
 }
 
 void MainWindow::on_spinBox_textChanged(int i) {
@@ -425,7 +423,7 @@ void MainWindow::delPage() {
     if(actualView!= nullptr){
         if(spinDelete < actualView->getPdf()->getNumberOfPage() && actualView->getPdf()->getNumberOfPage()!=1){
             DeletePage *del=new DeletePage(actualView->getPdf(), spinDelete, spinDelete);
-            del->update();
+            actualView->getCommandPattern()->addCommand(del);
         }
         else if(actualView->getPdf()->getNumberOfPage()==1)
         {
@@ -449,7 +447,7 @@ void MainWindow::SplitPage() {
             mess.exec();
         } else {
             DeletePage *del = new DeletePage(actualView->getPdf(), spinSplit1, spinSplit2);
-            del->update();
+            actualView->getCommandPattern()->addCommand(del);
         }
     }
 }
@@ -462,21 +460,44 @@ void MainWindow::movePage() {
             mess.exec();
         } else {
             MovePage *move = new MovePage(actualView->getPdf(), spinMove1, spinMove2);
-            move->update();
+            actualView->getCommandPattern()->addCommand(move);
         }
     }
 }
 
 void MainWindow::on_undo_clicked()
 {
-    //TODO write function
+    QMessageBox mess;
+    if(actualView!= nullptr){
+        if(actualView->getCommandPattern()->isUndoPossible()){
+            std::shared_ptr<Command> command = actualView->getCommandPattern()->undo();
+            command.get()->undo();
+        }
+        else{
+            mess.setText("Impossibile fare un undo");
+            mess.exec();
+        }
+    }
+}
+void MainWindow::on_redo_clicked() {
+    QMessageBox mess;
+    if(actualView!= nullptr){
+        if(actualView->getCommandPattern()->isRedoPossible()){
+            std::shared_ptr<Command> command = actualView->getCommandPattern()->redo();
+            command.get()->redo();
+        }
+        else{
+            mess.setText("Impossibile fare un redo");
+            mess.exec();
+        }
+    }
 }
 void MainWindow::on_rotatePage_clicked()
 {
     if(actualView != nullptr)
     {
-        EditRotation *e= new EditRotation(actualView->getPdf());
-        e->update();
+        EditRotation *editRotation= new EditRotation(actualView->getPdf());
+        actualView->getCommandPattern()->addCommand(editRotation);
     }
 }
 
@@ -491,7 +512,7 @@ void MainWindow::on_unionPage_clicked()
         const char * Cname = name.c_str();
         Pdf *pdfToAdd = new Pdf(Cname,Qname);
         UnionPdf *unionPdf= new UnionPdf(actualView->getPdf(),pdfToAdd);
-        unionPdf->update();
+        actualView->getCommandPattern()->addCommand(unionPdf);
         file.close();
     }
 

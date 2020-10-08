@@ -8,7 +8,6 @@ public:
     ~MovePage() override;
     bool update() override;
     void execute() override;
-    Pdf* getPdf();
 private:
     int nPage, atPage;
 };

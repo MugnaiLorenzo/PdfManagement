@@ -2,16 +2,59 @@
 CommandPattern::CommandPattern(){
 }
 CommandPattern::~CommandPattern(){
-    commands.clear();
 }
-std::list<Command> CommandPattern::getCommands(){
+std::stack<std::shared_ptr<Command>> CommandPattern::getCommands(){
     return commands;
 }
-void CommandPattern::addCommand(Command command){
-    command.update();
-    commands.push_back(command);
+void CommandPattern::addCommand(Command *command){
+    command->update();
+    commands.push(std::shared_ptr<Command>(command));
 }
-void CommandPattern::undo(){
-    commands.end()->undo();
-    commands.pop_back();
+
+bool CommandPattern::isUndoPossible() {
+    if(!commands.empty())
+        return true;
+    else
+        return false;
+}
+
+bool CommandPattern::isRedoPossible() {
+    if(!redocommands.empty())
+        return true;
+    else
+        return false;
+}
+
+std::shared_ptr<Command> CommandPattern::undo(){
+    if (isUndoPossible())
+    {
+        std::shared_ptr<Command> command = commands.top();
+        redocommands.push(std::shared_ptr<Command>(commands.top()));
+        commands.pop();
+        return command;
+    }
+    return nullptr;
+}
+
+std::shared_ptr<Command> CommandPattern::redo() {
+    if(isRedoPossible()){
+        std::shared_ptr<Command> command = redocommands.top();
+        commands.push(std::shared_ptr<Command>(redocommands.top()));
+        redocommands.pop();
+        return command;
+    }
+    return nullptr;
+}
+
+void CommandPattern::excecute() {
+    std::stack<std::shared_ptr<Command>> app;
+    while(!commands.empty()){
+        app.push(std::shared_ptr<Command>(commands.top()));
+        commands.pop();
+    }
+    while (!app.empty()){
+        commands.push(std::shared_ptr<Command>(app.top()));
+        commands.top()->execute();
+        app.pop();
+    }
 }

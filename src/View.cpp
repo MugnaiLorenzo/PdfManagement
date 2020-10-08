@@ -1,11 +1,9 @@
 #include "View.h"
-#include "QMessageBox"
-#include <utility>
-#include <QtCore/QFileInfo>
 
 View::View(){
 }
 View::View(std::string id, const char *file_name, QString Qfile_name):id(id){
+    commandPattern = new CommandPattern();
     if(QFileInfo::exists(Qfile_name)) {
         pdf = new Pdf(file_name, Qfile_name);
     }
@@ -77,6 +75,10 @@ void View::zoom(std::string zoom) {
 void View::resetZoom() {
     height=1250;
     width=900;
+}
+
+CommandPattern* View::getCommandPattern() {
+    return commandPattern;
 }
 
 

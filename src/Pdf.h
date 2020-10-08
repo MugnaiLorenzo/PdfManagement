@@ -10,9 +10,10 @@
 #include "podofo/doc/PdfPage.h"
 #include "poppler/qt5/poppler-qt5.h"
 #include "QString"
-#include <stack>
 #include <memory>
 #include <list>
+#include <qt5/QtCore/QString>
+#include "qt5/QtWidgets/QMessageBox"
 #include "Subject.h"
 
 class Pdf : public Subject{
@@ -35,6 +36,7 @@ public:
     int getNumberOfPage();
     void notify() override;
     void addObserver(Observer *observer) override;
+    void removeObserver() override;
 private:
     PoDoFo::PdfMemDocument *pdf;
     Poppler::Document *doc;

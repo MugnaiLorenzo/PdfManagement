@@ -7,9 +7,9 @@ public:
     EditRotation(Pdf *pdf);
     ~EditRotation() override;
     bool update() override;
-    void undo() override ;
     void execute() override;
-
+    void undo() override;
+    void redo() override;
 private:
     int page;
 };

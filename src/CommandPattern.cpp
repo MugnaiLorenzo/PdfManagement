@@ -47,14 +47,5 @@ std::shared_ptr<Command> CommandPattern::redo() {
 }
 
 void CommandPattern::excecute() {
-    std::stack<std::shared_ptr<Command>> app;
-    while(!commands.empty()){
-        app.push(std::shared_ptr<Command>(commands.top()));
-        commands.pop();
-    }
-    while (!app.empty()){
-        commands.push(std::shared_ptr<Command>(app.top()));
-        commands.top()->execute();
-        app.pop();
-    }
+
 }

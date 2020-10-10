@@ -8,10 +8,5 @@ DeletePage::~DeletePage(){
 bool DeletePage::update() {
     return pdf->delPage(nPage,nPages);
 }
-void DeletePage::execute(){
-    if(pdf->getPdf()->IsLoaded()){
-        QMessageBox mess;
-        mess.setText("Delete");
-        mess.exec();
-    }
+
 }

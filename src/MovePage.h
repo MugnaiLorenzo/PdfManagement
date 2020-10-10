@@ -7,7 +7,6 @@ public:
     MovePage(Pdf *pdf, int nPage, int atPage);
     ~MovePage() override;
     bool update() override;
-    void execute() override;
 private:
     int nPage, atPage;
 };

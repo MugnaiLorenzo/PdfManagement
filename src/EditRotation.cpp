@@ -4,13 +4,7 @@ EditRotation::EditRotation(Pdf *pdf) : Command(pdf){
 }
 EditRotation::~EditRotation(){
 }
-void EditRotation::execute(){
-    //pdf->getPdf()->GetPage(page)->SetRotation(90);
-    if(pdf->getPdf()->IsLoaded()){
-        QMessageBox mess;
-        mess.setText("Rotate");
-        mess.exec();
-    }
+
 }
 
 bool EditRotation::update() {

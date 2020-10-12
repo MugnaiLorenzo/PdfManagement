@@ -6,11 +6,12 @@ protected:
     MovePage *move;
     MovePage *move1;
     MovePage *move2;
+    MovePage *ex;
     virtual void SetUp() {
-        std::string file_name="TestMaterials/Game-Programming-in-C-Creating-3D-Games.pdf";
+        std::string file_name="TestMaterials/sanudo_i_diarii_tomo_iii.pdf";
         QString Qfile_name = QString::fromStdString(file_name);
         const char *file= file_name.c_str();
-        Pdf *pdf= new Pdf(file,Qfile_name);
+        Pdf *pdf= new Pdf(file,Qfile_name, "3");
         move= new MovePage(pdf,1,pdf->getNumberOfPage());
         move1= new MovePage(pdf,1,2);
         move2= new MovePage(pdf,2,1);

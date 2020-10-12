@@ -8,6 +8,7 @@ public:
     UnionPdf(Pdf *pdf, Pdf  *pdfToAdd);
     ~UnionPdf() override;
     bool update() override;
+    void execute() override;
     Pdf * getPdfToAdd();
 private:
     Pdf *pdfToAdd;

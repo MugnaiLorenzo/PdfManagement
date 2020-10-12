@@ -45,7 +45,7 @@ Pdf *View::getPdf() {
 
 QImage View::update(int n) {
     if(!pdf->advance(n)->get()->isModifed()){
-        return pdf->advance(n)->get()->getPage()->renderToImage(110,110);
+        return pdf->advance(n)->get()->getPage()->renderToImage(110,110).scaled(width,height);
     }
     else{
         if(pdf->advance(n)->get()->getRotate()==0)

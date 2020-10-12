@@ -7,6 +7,7 @@ public:
     DeletePage(Pdf *pdf, int nPage, int nPages);
     ~DeletePage() override;
     bool update() override;
+    void execute() override;
 private:
     int nPage;
     int nPages;

@@ -3,6 +3,7 @@
 #include "Page.cpp"
 #include "Pdf.cpp"
 #include "View.cpp"
+#include "CommandPattern.cpp"
 
 class ViewTest: public ::testing::Test{
 protected:

@@ -12,6 +12,9 @@ Pdf::Pdf(const char* file_name, QString Qfile_name,std:: string id):actual_Page(
                 pages.emplace_back(std::shared_ptr<Page>(new Page(doc->page(i), Pdf::file_name,i)));
             }
         }
+        else{
+            pdf=nullptr;
+        }
 
     } catch (PoDoFo::PdfError) {
         QMessageBox mess;

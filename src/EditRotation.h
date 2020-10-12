@@ -9,8 +9,11 @@ public:
     bool update() override;
     void undo() override;
     void redo() override;
+    void execute() override;
 private:
     int page;
+
+
 };
 
 

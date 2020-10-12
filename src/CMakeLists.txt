@@ -12,7 +12,7 @@ set(SOURCES
         main.cpp mainwindow.cpp mainwindow.h View.cpp View.h CommandPattern.cpp CommandPattern.h
         Command.cpp Command.h ManagementView.cpp ManagementView.h Pdf.cpp Pdf.h
         Page.cpp Page.h DeletePage.cpp DeletePage.h MovePage.cpp MovePage.h
-        UnionPdf.cpp UnionPdf.h EditRotation.cpp EditRotation.h Text.txt
+        UnionPdf.cpp UnionPdf.h EditRotation.cpp EditRotation.h Text.txt SplitPage.h SplitPage.cpp
         )
 set(PoDoFo_DIR ../lib/podofo/build)
 find_package(PoDoFo REQUIRED)

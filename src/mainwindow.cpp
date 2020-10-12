@@ -2,6 +2,7 @@
 #include "QRect"
 #include "QPixmap"
 #include "UnionPdf.h"
+#include "SplitPage.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), actualView(), manage(new ManagementView())
@@ -144,17 +145,19 @@ void MainWindow::apriRecente(QString fileName){
         std::string id = newTab->objectName().toStdString();
         const char * Cname = name.c_str();
         View *view= new View(id, Cname, Qname);
-        manage->addView(view);
-        QImage image= view->start();
-        view->getPdf()->addObserver(this);
-        QGraphicsScene *scene= new QGraphicsScene();
-        QGraphicsView *graphicsView= new QGraphicsView();
-        scene->addPixmap(QPixmap::fromImage(image));
-        graphicsView->setScene(scene);
-        QVBoxLayout* layout = new QVBoxLayout();
-        layout->addWidget(graphicsView);
-        newTab->setLayout( layout );
-        ui->tabWidget->addTab(newTab,s);
+        if(view->getPdf()->getPdf()->IsLoaded()){
+            manage->addView(view);
+            QImage image= view->start();
+            view->getPdf()->addObserver(this);
+            QGraphicsScene *scene= new QGraphicsScene();
+            QGraphicsView *graphicsView= new QGraphicsView();
+            scene->addPixmap(QPixmap::fromImage(image));
+            graphicsView->setScene(scene);
+            QVBoxLayout* layout = new QVBoxLayout();
+            layout->addWidget(graphicsView);
+            newTab->setLayout( layout );
+            ui->tabWidget->addTab(newTab,s);
+        }
         fileToOpen.close();
     }
     else{
@@ -173,11 +176,6 @@ void MainWindow::on_actionSalva_triggered()
 void MainWindow::on_actionChiudi_triggered()
 {
     QApplication::quit();
-}
-
-void MainWindow::on_actionScarica_Manuale_triggered()
-{
-    //TODO write function
 }
 
 void MainWindow::on_actionUnisci_triggered()
@@ -274,19 +272,17 @@ void MainWindow::on_movePage_clicked()
     menu->addAction(action);
     ui->movePage->setMenu(menu);
     ui->movePage->showMenu();
-    //TODO write function
 }
 
 void MainWindow::on_splitPage_clicked()
 {
-    std::string str = "Da pagina: ";
-    QString qstr = QString::fromStdString(str);
-    std::string str1 = "A pagina: ";
-    QString qstr1 = QString::fromStdString(str1);
-    std::string str2 = "Vai";
-    QString qstr2 = QString::fromStdString(str2);
+    QString qstr = "Da pagina: ";
+    QString qstr1 = "A pagina: ";
+    QString qstr2 = "Vai";
+    QString qstr3 = "Inserisci nome:";
     QLabel *label= new QLabel(qstr);
     QLabel *label1= new QLabel(qstr1);
+    QLabel *label2= new QLabel(qstr3);
     QPushButton *button= new QPushButton();
     button->setText(qstr2);
 
@@ -295,6 +291,8 @@ void MainWindow::on_splitPage_clicked()
     QHBoxLayout *layout = new QHBoxLayout();
     QSpinBox *spin= new QSpinBox();
     QSpinBox *spin1= new QSpinBox();
+    edit= new QTextEdit();
+    edit->setFixedHeight(30);
     spin->setMaximum(5000000);
     spin1->setMaximum(5000000);
 
@@ -302,18 +300,20 @@ void MainWindow::on_splitPage_clicked()
     layout->addWidget(spin);
     layout->addWidget(label1);
     layout->addWidget(spin1);
+    layout->addWidget(label2);
+    layout->addWidget(edit);
     layout->addWidget(button);
     wid->setLayout(layout);
     QObject::connect(spin,SIGNAL(valueChanged(int)),this,SLOT(onSpinSplit1Change(int)));
     QObject::connect(spin1,SIGNAL(valueChanged(int)),this,SLOT(onSpinSplit2Change(int)));
     QObject::connect(button,SIGNAL(clicked()),this,SLOT(SplitPage()));
+    QObject::connect(edit,SIGNAL(textChanged()),this,SLOT(onEditChange()));
 
     QWidgetAction *action =new QWidgetAction(this);
     action->setDefaultWidget(wid);
     menu->addAction(action);
     ui->splitPage->setMenu(menu);
     ui->splitPage->showMenu();
-    //TODO write function
 }
 
 void MainWindow::on_Apri_Butto_1_clicked()
@@ -440,14 +440,20 @@ void MainWindow::delPage() {
 }
 
 void MainWindow::SplitPage() {
+    QMessageBox mess;
     if(actualView != nullptr) {
-        QMessageBox mess;
-        if (spinSplit1 > spinSplit2) {
+        if (spinSplit1 > spinSplit2 || name.size()==0) {
             mess.setText("Hai sbagliato ad inserire i dati");
             mess.exec();
         } else {
-            DeletePage *del = new DeletePage(actualView->getPdf(), spinSplit1, spinSplit2);
-            actualView->getCommandPattern()->addCommand(del);
+            QFileDialog dialog;
+            dialog.setFileMode(QFileDialog::DirectoryOnly);
+            dialog.exec();
+            QString dir=dialog.directory().path();
+            QString path= dialog.directory().path()+"/"+name+".pdf";
+            std::string s=path.toStdString();
+            class SplitPage *split = new class SplitPage(actualView->getPdf(), spinSplit1, spinSplit2, s);
+            actualView->getCommandPattern()->addCommand(split);
         }
     }
 }
@@ -510,8 +516,11 @@ void MainWindow::on_unionPage_clicked()
         QString Qname= fileInfo.path()+"/"+fileInfo.fileName();
         std::string name= Qname.toStdString();
         const char * Cname = name.c_str();
-        Pdf *pdfToAdd = new Pdf(Cname,Qname);
-        UnionPdf *unionPdf= new UnionPdf(actualView->getPdf(),pdfToAdd);
+        std::string s= "add"+std::to_string(id);
+        id++;
+        View *pdfToAdd = new View(s,Cname,Qname);
+        manage->addView(pdfToAdd);
+        UnionPdf *unionPdf= new UnionPdf(actualView->getPdf(),pdfToAdd->getPdf());
         actualView->getCommandPattern()->addCommand(unionPdf);
         file.close();
     }
@@ -545,4 +554,8 @@ void MainWindow::update() {
     ui->tabWidget->currentWidget()->setLayout(layout);
     actualView->getPdf()->setActual_page(page);
     ui->spinBox->setValue(page);
+}
+
+void MainWindow::onEditChange() {
+    name=edit->toPlainText();
 }

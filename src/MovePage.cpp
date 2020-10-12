@@ -11,13 +11,21 @@ bool MovePage::update() {
 }
 
 void MovePage::execute() {
-    /*PoDoFo::PdfPage *app = pdf->advance(nPage)->getPage()
-    pdf->getPdf()->DeletePages(nPage,1);
-    pdf->getPage().insert(pdf->advance(atPage),app);
-    delete app;*/
-    if(pdf->getPdf()->IsLoaded()){
+    try {
+        if(pdf->getPdf()->IsLoaded()){
+            if(nPage<atPage){
+                PoDoFo::PdfMemDocument pdfMemDocument;
+                pdfMemDocument.Load(pdf->getFile_Name().c_str(), true);
+                pdf->getPdf()->InsertPages(pdfMemDocument,nPage+1,atPage-nPage);
+                pdf->getPdf()->InsertPages(pdfMemDocument,nPage,1);
+                pdf->getPdf()->InsertPages(pdfMemDocument,atPage+1,pdfMemDocument.GetPageCount()-1);
+                pdf->getPdf()->DeletePages(nPage,pdfMemDocument.GetPageCount());
+                pdf->getPdf()->WriteUpdate(pdf->getFile_Name().c_str());
+            }
+        }
+    } catch (PoDoFo::PdfError &error) {
         QMessageBox mess;
-        mess.setText("Move");
+        mess.setText(QString::fromStdString(error.what()));
         mess.exec();
     }
 }

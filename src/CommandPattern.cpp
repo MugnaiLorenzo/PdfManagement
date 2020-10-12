@@ -47,14 +47,22 @@ std::shared_ptr<Command> CommandPattern::redo() {
 }
 
 void CommandPattern::excecute() {
-    std::stack<std::shared_ptr<Command>> app;
-    while(!commands.empty()){
-        app.push(std::shared_ptr<Command>(commands.top()));
-        commands.pop();
+    QMessageBox mess;
+    if(!commands.empty()){
+        std::stack<std::shared_ptr<Command>> app;
+        while(!commands.empty()){
+            app.push(std::shared_ptr<Command>(commands.top()));
+            commands.pop();
+        }
+        while (!app.empty()){
+            app.top()->execute();
+            app.pop();
+        }
+        mess.setText("File salvato");
+        mess.exec();
     }
-    while (!app.empty()){
-        commands.push(std::shared_ptr<Command>(app.top()));
-        commands.top()->execute();
-        app.pop();
+    else{
+        mess.setText("Nessuna modifica apportata");
+        mess.exec();
     }
 }

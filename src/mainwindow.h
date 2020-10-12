@@ -67,8 +67,6 @@ private slots:
 
     void on_actionSalva_triggered();
 
-    void on_actionScarica_Manuale_triggered();
-
     void on_actionUnisci_triggered();
 
     void on_actionCancella_pagina_triggered();
@@ -127,16 +125,20 @@ private slots:
 
     void onSpinMove2Change(int i);
 
+    void onEditChange();
+
     void onTabChange();
 
     void update() override;
 
 private:
+    QTextEdit *edit;
     Ui::MainWindow *ui;
     ManagementView *manage;
     View *actualView;
     int nView=0;
     int spinDelete=0, spinMove1=0, spinMove2=0,spinSplit1=0,spinSplit2=0;
-    QString psw;
+    int id=0;
+    QString name;
 };
 #endif // MAINWINDOW_H

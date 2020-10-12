@@ -1,6 +1,5 @@
 #ifndef PDFMANAGEMENT_COMMANDPATTERN_H
 #define PDFMANAGEMENT_COMMANDPATTERN_H
-//#include "Command.h"
 #include <stack>
 #include <list>
 #include <memory>

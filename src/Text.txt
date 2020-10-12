@@ -1,9 +1,3 @@
-/home/lorenzo/CLionProjects/PdfManagement/test/TestMaterials/Game-Programming-in-C-Creating-3D-Games.pdf,08/10/2020
-/home/lorenzo/CLionProjects/PdfManagement/test/TestMaterials/test4.pdf,08/10/2020
-/home/lorenzo/CLionProjects/PdfManagement/test/TestMaterials/test2.pdf,25/09/2020
-/home/lorenzo/CLionProjects/PdfManagement/test/TestMaterials/Game-Programming-in-C-Creating-3D-Games.pdf,11/09/2020
-/home/lorenzo/CLionProjects/PdfManagement/test/TestMaterials/test3.pdf,11/09/2020
-/home/lorenzo/CLionProjects/PdfManagement/test/TestMaterials/test4.pdf,11/09/2020
-/home/lorenzo/Scaricati/Nuovo Documento di Microsoft Word.pdf,27/07/2020
-/home/lorenzo/Scaricati/Senza nome 1.pdf,27/07/2020
-/home/lorenzo/Scaricati/Nuovo Documento di Microsoft Word.pdf,27/07/2020
+/home/lorenzo/TestMaterials/a.pdf,12/10/2020
+/home/lorenzo/TestMaterials/destin_p.pdf,12/10/2020
+/home/lorenzo/TestMaterials/pirandello_l_uomo_dal_fiore_etc.pdf,12/10/2020

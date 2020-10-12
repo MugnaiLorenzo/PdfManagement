@@ -2,7 +2,6 @@
 #define PDFMANAGEMENT_VIEW_H
 #include "iostream"
 #include "Pdf.h"
-#include "Command.h"
 #include <QtGui/QImage>
 #include "QMessageBox"
 #include <utility>

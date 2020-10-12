@@ -1,14 +1,18 @@
 #include "Pdf.h"
 
-Pdf::Pdf(const char* file_name, QString Qfile_name):actual_Page(0) {
+Pdf::Pdf(const char* file_name, QString Qfile_name,std:: string id):actual_Page(0),id(id) {
+    Pdf::file_name= std::string (file_name);
     pdf= new PoDoFo::PdfMemDocument();
     try {
-        pdf->Load(file_name);
-        doc= Poppler::Document::load(Qfile_name);
-       for(int i=0; i<doc->numPages();i++)
-        {
-            pages.emplace_back(std::shared_ptr<Page>(new Page(doc->page(i))));
+        pdf->Load(file_name, true);
+        if(pdf->IsLoaded()){
+            doc= Poppler::Document::load(Qfile_name);
+            for(int i=0; i<doc->numPages();i++)
+            {
+                pages.emplace_back(std::shared_ptr<Page>(new Page(doc->page(i), Pdf::file_name,i)));
+            }
         }
+
     } catch (PoDoFo::PdfError) {
         QMessageBox mess;
         mess.setText("Errore nel caricamento");
@@ -28,10 +32,10 @@ Poppler::Page *Pdf::getPage(int n) {
     return it->get()->getPage();
 }
 
-void Pdf::setPage(int nPage, Poppler::Page *page) {
+void Pdf::setPage(int nPage, Poppler::Page *page, std::string url, int n) {
     it= pages.begin();
     std::advance(it,nPage);
-    std::shared_ptr<Page> page1(new Page(page));
+    std::shared_ptr<Page> page1(new Page(page, url, n));
     pages.insert(it, page1);
 }
 
@@ -82,7 +86,7 @@ bool Pdf::delPage(int nPage, int nPages) {
         }
         else{
             if((nPage+nPages)<getNumberOfPage()){
-                for(nPage;nPage<=nPages;nPage++){
+                for(int i=nPage;i<=nPages;i++){
                     pages.erase(advance(nPage));
                 }
                 notify();
@@ -120,7 +124,7 @@ bool Pdf::movePage(int nPage, int atPage) {
 
 bool Pdf::unionPdf(Pdf *pdfToAdd) {
     for(int i=0;i<pdfToAdd->getPage().size();i++){
-        pages.emplace_back(std::shared_ptr<Page>(new Page(pdfToAdd->advance(i)->get()->getPage())));
+        pages.emplace_back(std::shared_ptr<Page>(new Page(pdfToAdd->advance(i)->get()->getPage(),pdfToAdd->getFile_Name(),i)));
     }
     notify();
     return true;
@@ -137,4 +141,17 @@ void Pdf::addObserver(Observer *observer) {
 
 void Pdf::removeObserver() {
     Pdf::observer= nullptr;
+}
+
+std::string Pdf::getFile_Name() {
+    return Pdf::file_name;
+}
+
+PoDoFo::PdfRect Pdf::getRect(int i) {
+
+    return PoDoFo::PdfRect();
+}
+
+std::string Pdf::getId() {
+    return id;
 }

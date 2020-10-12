@@ -705,15 +705,8 @@ border-width: 2px;
     <addaction name="actionCancella_l_ultima_azione"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuAiuto">
-    <property name="title">
-     <string>Aiuto</string>
-    </property>
-    <addaction name="actionScarica_Manuale"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStrumenti"/>
-   <addaction name="menuAiuto"/>
   </widget>
   <action name="actionApri">
    <property name="icon">
@@ -792,7 +785,7 @@ border-width: 2px;
   </action>
   <action name="actionRifai">
    <property name="icon">
-    <iconset resource="Risorse.qrc">
+    <iconset>
      <normaloff>:/Image/strumenti/redoo.png</normaloff>:/Image/strumenti/redoo.png</iconset>
    </property>
    <property name="text">

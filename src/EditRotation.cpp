@@ -5,15 +5,20 @@ EditRotation::EditRotation(Pdf *pdf) : Command(pdf){
 EditRotation::~EditRotation(){
 }
 void EditRotation::execute(){
-    //pdf->getPdf()->GetPage(page)->SetRotation(90);
-    if(pdf->getPdf()->IsLoaded()){
+    try {
+        if (pdf->getPdf()->IsLoaded()){
+            pdf->getPdf()->GetPage(page)->SetRotation(pdf->advance(page)->get()->getRotate()+pdf->getPdf()->GetPage(page)->GetRotation());
+            pdf->getPdf()->WriteUpdate(pdf->getFile_Name().c_str());
+        }
+    } catch (PoDoFo::PdfError &error) {
         QMessageBox mess;
-        mess.setText("Rotate");
+        mess.setText(QString::fromStdString(error.what()));
         mess.exec();
     }
 }
 
 bool EditRotation::update() {
+    pdf->advance(page)->get()->setModifed(true);
     if(pdf->advance(page)->get()->getRotate()==0)
     {
         pdf->advance(page)->get()->setRotate(90);

@@ -2,7 +2,6 @@
 #define PDFMANAGEMENT_COMMAND_H
 
 #include "Pdf.h"
-
 class Command {
 public:
     explicit Command(Pdf *pdf);

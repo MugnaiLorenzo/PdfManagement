@@ -1,7 +1,3 @@
-//
-// Created by loren on 01/06/2020.
-//
-
 #ifndef PDFMANAGEMENT_PDF_H
 #define PDFMANAGEMENT_PDF_H
 #include "iostream"
@@ -18,14 +14,14 @@
 
 class Pdf : public Subject{
 public:
-    Pdf(const char* file_name,QString Qfile_name);
+    Pdf(const char* file_name,QString Qfile_name,std:: string id);
     ~Pdf();
     std::list<std::shared_ptr<Page>> getPage();
     void setPage(std::list<std::shared_ptr<Page>> pages);
     Poppler::Page* getPage(int n);
     PoDoFo::PdfMemDocument* getPdf();
     Poppler::Document* getPdfDoc();
-    void setPage(int nPage, Poppler::Page *page);
+    void setPage(int nPage, Poppler::Page *page, std::string id, int n);
     bool delPage(int nPage, int nPages);
     bool movePage(int nPage, int atPage);
     void addPage(int nPage, PoDoFo::PdfPage *page);
@@ -34,9 +30,12 @@ public:
     void setActual_page(int  n);
     int getActual_page();
     int getNumberOfPage();
+    std::string getFile_Name();
     void notify() override;
+    PoDoFo::PdfRect getRect(int i);
     void addObserver(Observer *observer) override;
     void removeObserver() override;
+    std:: string getId();
 private:
     PoDoFo::PdfMemDocument *pdf;
     Poppler::Document *doc;
@@ -44,6 +43,8 @@ private:
     std::list<std::shared_ptr<Page>>::iterator it;
     int actual_Page;
     Observer *observer;
+    std::string file_name;
+    std:: string id;
 };
 
 

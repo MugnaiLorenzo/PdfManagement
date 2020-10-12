@@ -11,10 +11,16 @@ bool UnionPdf::update() {
 }
 
 void UnionPdf::execute() {
-    //pdf->getPdf()->InsertPages(pdfToAdd->getPdf(),0,pdfToAdd->getPage().size());
-    if(pdf->getPdf()->IsLoaded()){
+    try {
+        if(pdf->getPdf()->IsLoaded()){
+            PoDoFo::PdfMemDocument pdfMemDocument;
+            pdfMemDocument.Load(pdfToAdd->getFile_Name().c_str(), true);
+            pdf->getPdf()->InsertPages(pdfMemDocument,0,pdfToAdd->getPage().size());
+            pdf->getPdf()->WriteUpdate(pdf->getFile_Name().c_str());
+        }
+    } catch (PoDoFo::PdfError &error) {
         QMessageBox mess;
-        mess.setText("Union");
+        mess.setText(QString::fromStdString(error.what()));
         mess.exec();
     }
 }

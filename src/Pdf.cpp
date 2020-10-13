@@ -20,7 +20,6 @@ Pdf::Pdf(const char* file_name, QString Qfile_name,std:: string id):actual_Page(
         QMessageBox mess;
         mess.setText("Errore nel caricamento");
         mess.exec();
-
     }
 }
 
@@ -81,7 +80,6 @@ bool Pdf::delPage(int nPage, int nPages) {
         if(nPage==nPages){
             if(nPage!=getNumberOfPage()){
                 pages.erase(advance(nPage));
-                notify();
                 return true;
             }
             else
@@ -92,7 +90,6 @@ bool Pdf::delPage(int nPage, int nPages) {
                 for(int i=nPage;i<=nPages;i++){
                     pages.erase(advance(nPage));
                 }
-                notify();
                 return true;
             } else
                 return false;
@@ -110,14 +107,12 @@ bool Pdf::movePage(int nPage, int atPage) {
             std::shared_ptr<Page> page1(advance(nPage)->get());
             pages.insert(advance(atPage+1),page1);
             pages.erase(advance(nPage));
-            notify();
             return true;
         }
         else{
             std::shared_ptr<Page> page1(advance(nPage)->get());
             pages.insert(advance(atPage),page1);
             pages.erase(advance(nPage+1));
-            notify();
             return true;
         }
     }
@@ -129,7 +124,6 @@ bool Pdf::unionPdf(Pdf *pdfToAdd) {
     for(int i=0;i<pdfToAdd->getPage().size();i++){
         pages.emplace_back(std::shared_ptr<Page>(new Page(pdfToAdd->advance(i)->get()->getPage(),pdfToAdd->getFile_Name(),i)));
     }
-    notify();
     return true;
 }
 

@@ -16,10 +16,20 @@ void MovePage::execute() {
             if(nPage<atPage){
                 PoDoFo::PdfMemDocument pdfMemDocument;
                 pdfMemDocument.Load(pdf->getFile_Name().c_str(), true);
+                int nPage1=pdfMemDocument.GetPageCount();
                 pdf->getPdf()->InsertPages(pdfMemDocument,nPage+1,atPage-nPage);
                 pdf->getPdf()->InsertPages(pdfMemDocument,nPage,1);
-                pdf->getPdf()->InsertPages(pdfMemDocument,atPage+1,pdfMemDocument.GetPageCount()-1);
-                pdf->getPdf()->DeletePages(nPage,pdfMemDocument.GetPageCount());
+                pdf->getPdf()->InsertPages(pdfMemDocument,atPage+1,nPage1-atPage);
+                pdf->getPdf()->DeletePages(nPage,nPage1-nPage);
+                pdf->getPdf()->WriteUpdate(pdf->getFile_Name().c_str());
+            }
+            else{
+                PoDoFo::PdfMemDocument pdfMemDocument;
+                pdfMemDocument.Load(pdf->getFile_Name().c_str(), true);
+                pdf->getPdf()->InsertPages(pdfMemDocument,nPage,1);
+                pdf->getPdf()->InsertPages(pdfMemDocument,atPage,1);
+                pdf->getPdf()->InsertPages(pdfMemDocument,nPage+1,pdfMemDocument.GetPageCount()-nPage);
+                pdf->getPdf()->DeletePages(0,pdfMemDocument.GetPageCount());
                 pdf->getPdf()->WriteUpdate(pdf->getFile_Name().c_str());
             }
         }

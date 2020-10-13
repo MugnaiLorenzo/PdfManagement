@@ -9,14 +9,13 @@ protected:
     DeletePage *del1;
     DeletePage *ex;
     virtual void SetUp() {
-        std::string file_name="TestMaterials/maeterlinck_l_uccello_azzurro.pdf";
+        std::string file_name="TestMaterials/GTest/maeterlinck_l_uccello_azzurro.pdf";
         QString Qfile_name = QString::fromStdString(file_name);
         const char *file= file_name.c_str();
         Pdf *pdf= new Pdf(file,Qfile_name, "2");
         del=new DeletePage(pdf,pdf->getNumberOfPage(),pdf->getNumberOfPage()); //cancellare pagine non esistenti
         del1=new DeletePage(pdf,0,3); //cancellare pagine non esistenti
         ex=new DeletePage(pdf, 0,0);
-
     }
     void executeTest();
 };
@@ -24,7 +23,7 @@ protected:
 void DeletePageTest::executeTest(){
     QImage image=ex->getPdf()->getPage(1)->renderToImage();
     ex->execute();
-    Pdf *pdf1= new Pdf("TestMaterials/maeterlinck_l_uccello_azzurro.pdf","TestMaterials/maeterlinck_l_uccello_azzurro.pdf", "2");
+    Pdf *pdf1= new Pdf("TestMaterials/GTest/maeterlinck_l_uccello_azzurro.pdf","TestMaterials/GTest/maeterlinck_l_uccello_azzurro.pdf", "2");
     if(pdf1->getPage(0)->renderToImage()==image){
         GTEST_SUCCEED();
     }

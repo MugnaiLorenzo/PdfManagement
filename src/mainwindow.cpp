@@ -171,6 +171,9 @@ void MainWindow::on_actionSalva_triggered()
 {
     if(actualView!= nullptr){
         actualView->getCommandPattern()->excecute();
+        std::string file_name = actualView->getPdf()->getFile_Name();
+        on_tabWidget_tabCloseRequested(ui->tabWidget->currentIndex());
+        apriRecente(QString::fromStdString(file_name));
     }
 }
 void MainWindow::on_actionChiudi_triggered()

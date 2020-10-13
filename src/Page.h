@@ -15,6 +15,7 @@ public:
     int getRotate() ;
     void setRotate(int rotate);
     int getnPage();
+    void setnPage(int n);
     std::string getUrl();
     bool isModifed();
     void setModifed(bool modifed);

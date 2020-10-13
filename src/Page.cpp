@@ -41,3 +41,10 @@ bool Page::isModifed() {
 void Page::setModifed(bool modifed) {
     this->modifed= modifed;
 }
+
+void Page::setnPage(int n) {
+    nPage=n;
+    QMessageBox mess;
+    mess.setText(QString::number(nPage)+" "+QString::number(n));
+    mess.exec();
+}

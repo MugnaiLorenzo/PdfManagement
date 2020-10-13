@@ -7,8 +7,10 @@ std::stack<std::shared_ptr<Command>> CommandPattern::getCommands(){
     return commands;
 }
 void CommandPattern::addCommand(Command *command){
-    command->update();
-    commands.push(std::shared_ptr<Command>(command));
+    if (command->update()){
+        command->getPdf()->notify();
+        commands.push(std::shared_ptr<Command>(command));
+    }
 }
 
 bool CommandPattern::isUndoPossible() {
@@ -54,9 +56,11 @@ void CommandPattern::excecute() {
             app.push(std::shared_ptr<Command>(commands.top()));
             commands.pop();
         }
-        while (!app.empty()){
-            app.top()->execute();
-            app.pop();
+        commands=app;
+        while(!commands.empty()){
+            commands.top()->execute();
+            app.push(std::shared_ptr<Command>(commands.top()));
+            commands.pop();
         }
         mess.setText("File salvato");
         mess.exec();

@@ -19,6 +19,7 @@ public:
     std::string getUrl();
     bool isModifed();
     void setModifed(bool modifed);
+    bool operator==(Page page);
 private:
     Poppler::Page *page;
     int nPage;

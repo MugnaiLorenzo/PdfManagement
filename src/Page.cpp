@@ -48,3 +48,10 @@ void Page::setnPage(int n) {
     mess.setText(QString::number(nPage)+" "+QString::number(n));
     mess.exec();
 }
+
+bool Page::operator==(Page page) {
+    if (page.getPage()->renderToImage()==Page::getPage()->renderToImage())
+        return true;
+    else
+        return false;
+}
